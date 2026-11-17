@@ -1,0 +1,4 @@
+.aviso { border-left: 4px solid rgb(var(--warning)); }
+.aviso.ok { border-left-color: rgb(var(--success)); }
+td.acciones { text-align: right; white-space: nowrap; }
+td.acciones .fx-btn { margin-left: 4px; }

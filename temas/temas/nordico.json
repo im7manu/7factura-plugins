@@ -1,0 +1,15 @@
+{
+  "id": "nordico",
+  "nombre": "Nórdico",
+  "descripcion": "Tranquilo y luminoso: verdes de bosque, mucho aire, bordes redondeados y el menú arriba en lugar de al lado.",
+  "autor": "Facturador",
+  "claro": { "canvas": "#F4F6F5", "surface": "#FFFFFF", "subtle": "#EDF1EF", "stroke": "#DCE3E0", "fg": "#1F2A27", "muted": "#5E6B67",
+    "brand": "#2F6F62", "brand-hover": "#255A4F", "brand-fg": "#2F6F62", "brand-soft": "#E3F0EC", "suite": "#FFFFFF", "suite-fg": "#1F2A27",
+    "danger": "#B3404A", "success": "#2F7D4F", "warning": "#A86B12" },
+  "oscuro": { "canvas": "#151A19", "surface": "#1C2321", "subtle": "#242D2A", "stroke": "#323D39", "fg": "#E7ECEA", "muted": "#9AA8A3",
+    "brand": "#3E8C7B", "brand-hover": "#4FA190", "brand-fg": "#8FD1C1", "brand-soft": "#1F3A33", "suite": "#1C2321", "suite-fg": "#E7ECEA",
+    "danger": "#E07A83", "success": "#6CC28F", "warning": "#E2AD5C" },
+  "fuente": "system-ui, -apple-system, \"Segoe UI\", Roboto, Ubuntu, sans-serif",
+  "radio": 10, "sombra": "suave", "menu": "superior", "iconos": { "trazo": 1.6 },
+  "mosaicos": { "blue": "#3A6EA5", "teal": "#2F6F62", "purple": "#6E5A8E", "orange": "#B8743A", "green": "#4C7F4F", "magenta": "#9A5272", "slate": "#55625E" }
+}

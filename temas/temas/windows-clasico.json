@@ -1,0 +1,13 @@
+{
+  "id": "windows-clasico",
+  "nombre": "Windows clásico",
+  "descripcion": "Escritorio de los 90: gris, bordes en relieve, barra de título azul marino y esquinas cuadradas.",
+  "autor": "Facturador",
+  "modo": "claro",
+  "claro": { "canvas": "#008080", "surface": "#C0C0C0", "subtle": "#D4D0C8", "stroke": "#808080", "fg": "#000000", "muted": "#303030",
+    "brand": "#000080", "brand-hover": "#1084D0", "brand-fg": "#000080", "brand-soft": "#D4D0C8", "suite": "#000080", "suite-fg": "#FFFFFF",
+    "danger": "#A00000", "success": "#006000", "warning": "#7A4A00" },
+  "fuente": "Tahoma, Verdana, \"MS Sans Serif\", \"Segoe UI\", sans-serif",
+  "radio": 0, "sombra": "ninguna", "relieve": true, "densidad": "compacta", "menu": "lateral", "iconos": { "trazo": 1.5 },
+  "mosaicos": { "blue": "#000080", "teal": "#008080", "purple": "#800080", "orange": "#808000", "green": "#008000", "magenta": "#800000", "slate": "#404040" }
+}

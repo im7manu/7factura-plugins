@@ -1,0 +1,11 @@
+{
+  "id": "copias",
+  "nombre": "Copias de seguridad",
+  "version": "1.0.0",
+  "descripcion": "Copia semanal automática y bajo demanda de todos los datos, descargable en ZIP para guardarla fuera del servidor. Permite restaurar una copia.",
+  "autor": "im7manu",
+  "licencia": "MIT",
+  "app_min": "0.1.0",
+  "server": "server.mjs",
+  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Copias de seguridad" }] }
+}

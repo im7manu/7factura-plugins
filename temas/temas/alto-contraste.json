@@ -1,0 +1,60 @@
+{
+  "id": "alto-contraste",
+  "nombre": "Alto contraste",
+  "descripcion": "Para quien ve con dificultad: fondo negro, texto blanco, acentos amarillos y bordes muy marcados.",
+  "autor": "Facturador",
+  "modo": "oscuro",
+  "claro": {
+    "canvas": "#000000",
+    "surface": "#000000",
+    "subtle": "#1A1A1A",
+    "stroke": "#FFFFFF",
+    "fg": "#FFFFFF",
+    "muted": "#E6E6E6",
+    "brand": "#FFFF00",
+    "brand-hover": "#FFE600",
+    "brand-fg": "#FFFF00",
+    "brand-soft": "#333300",
+    "suite": "#000000",
+    "suite-fg": "#FFFF00",
+    "danger": "#FF6B6B",
+    "success": "#3FF23F",
+    "warning": "#FFB000",
+    "brand-on": "#000000"
+  },
+  "oscuro": {
+    "canvas": "#000000",
+    "surface": "#000000",
+    "subtle": "#1A1A1A",
+    "stroke": "#FFFFFF",
+    "fg": "#FFFFFF",
+    "muted": "#E6E6E6",
+    "brand": "#FFFF00",
+    "brand-hover": "#FFE600",
+    "brand-fg": "#FFFF00",
+    "brand-soft": "#333300",
+    "suite": "#000000",
+    "suite-fg": "#FFFF00",
+    "danger": "#FF6B6B",
+    "success": "#3FF23F",
+    "warning": "#FFB000",
+    "brand-on": "#000000"
+  },
+  "fuente": "system-ui, -apple-system, \"Segoe UI\", Arial, sans-serif",
+  "radio": 2,
+  "sombra": "ninguna",
+  "menu": "lateral",
+  "iconos": {
+    "trazo": 2.5
+  },
+  "mosaicos": {
+    "blue": "#0050B3",
+    "teal": "#006B66",
+    "purple": "#5B2E91",
+    "orange": "#A34700",
+    "green": "#1B6B1B",
+    "magenta": "#8B1D6E",
+    "slate": "#333333"
+  },
+  "bordes": true
+}

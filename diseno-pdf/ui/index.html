@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diseño de PDF</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <div class="fx-fila" style="justify-content:space-between;margin-bottom:12px">
+    <div><h1>Diseño de PDF</h1><p class="fx-sub" style="margin:0">Crea uno o varios diseños y decide a qué documentos se aplican.</p></div>
+    <div class="fx-fila"><span class="fx-nota" id="estado-guardado"></span><button class="fx-btn fx-btn-primario" id="guardar">Guardar diseños</button></div>
+  </div>
+  <div class="disposicion">
+    <aside>
+      <div class="fx-card lista">
+        <h2>Diseños</h2>
+        <ul id="lista"></ul>
+        <div class="fx-fila"><button class="fx-btn" id="nuevo">Nuevo</button><button class="fx-btn" id="duplicar">Duplicar</button><button class="fx-btn fx-btn-peligro" id="borrar">Borrar</button></div>
+      </div>
+      <div class="fx-card" id="cert"></div>
+    </aside>
+    <main id="editor"></main>
+    <section class="previa">
+      <div class="fx-fila" style="margin-bottom:8px">
+        <label class="fx-campo" style="flex:1"><span>Vista previa con</span><select class="fx-select" id="tipo-previa"></select></label>
+        <button class="fx-btn" id="refrescar">Actualizar</button>
+      </div>
+      <iframe id="visor" title="Vista previa del PDF"></iframe>
+    </section>
+  </div>
+  <script src="/plugin-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

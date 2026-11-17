@@ -1,0 +1,14 @@
+{
+  "id": "frutiger-aero",
+  "nombre": "Frutiger Aero",
+  "descripcion": "Cielo, agua y cristal: superficies translúcidas con desenfoque, brillos y bordes redondeados, al estilo de los 2000.",
+  "autor": "Facturador",
+  "modo": "claro",
+  "claro": { "canvas": "#E6F5FF", "surface": "#FFFFFF", "subtle": "#E3F3FC", "stroke": "#B9DCF2", "fg": "#12324A", "muted": "#47657A",
+    "brand": "#1593D6", "brand-hover": "#0B7DBA", "brand-fg": "#0A6AA3", "brand-soft": "#DDF2FF", "suite": "#1C8FD0", "suite-fg": "#FFFFFF",
+    "danger": "#C9302C", "success": "#2E9E44", "warning": "#C77400" },
+  "fuente": "\"Segoe UI\", Frutiger, \"Frutiger Linotype\", \"Myriad Pro\", \"Lucida Grande\", system-ui, sans-serif",
+  "radio": 12, "sombra": "marcada", "cristal": true, "menu": "lateral", "iconos": { "trazo": 1.75 },
+  "fondo_app": "radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.9), rgba(255,255,255,0) 45%), radial-gradient(ellipse at 85% 85%, rgba(140,230,170,0.55), rgba(140,230,170,0) 50%), linear-gradient(180deg, #8fd3ff 0%, #c9ecff 40%, #e9fbff 70%, #bff0cf 100%)",
+  "mosaicos": { "blue": "#1C8FD0", "teal": "#14A7A0", "purple": "#6F7FE0", "orange": "#E88A1A", "green": "#3DAA4B", "magenta": "#C25BB8", "slate": "#4F7A96" }
+}

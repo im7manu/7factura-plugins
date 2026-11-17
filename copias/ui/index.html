@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Copias de seguridad</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Copias de seguridad</h1>
+  <p class="fx-sub">Incluyen la base de datos, los adjuntos, la configuración de los plugins y la clave de cifrado de las cuentas de correo.</p>
+
+  <div id="aviso" class="fx-card aviso" hidden></div>
+
+  <div class="fx-card">
+    <div class="fx-fila" style="justify-content:space-between">
+      <div>
+        <h2>Copias guardadas en el servidor</h2>
+        <p class="fx-nota" id="resumen">Cargando…</p>
+      </div>
+      <button class="fx-btn fx-btn-primario" id="crear">Hacer una copia ahora</button>
+    </div>
+    <table class="fx-tabla" style="margin-top:12px">
+      <thead><tr><th>Fecha</th><th>Tipo</th><th>Tamaño</th><th></th></tr></thead>
+      <tbody id="lista"></tbody>
+    </table>
+    <p class="fx-nota" style="margin-top:12px">
+      <strong>Importante:</strong> descarga las copias y guárdalas fuera del servidor (un disco externo, la nube de la empresa…).
+      Si el servidor se estropea, las copias que solo estén en él se pierden con él. El ZIP contiene todos los datos de la empresa: guárdalo en un sitio seguro.
+    </p>
+  </div>
+
+  <div class="fx-card">
+    <h2>Copia automática</h2>
+    <p class="fx-nota">Se hace una copia cada semana. Si el servidor estaba apagado a esa hora, se hace en cuanto vuelve a arrancar.</p>
+    <form class="fx-fila" id="form-ajustes" style="margin-top:8px">
+      <label class="fx-campo"><span>Día</span>
+        <select class="fx-select" name="dia">
+          <option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option>
+          <option value="5">Viernes</option><option value="6">Sábado</option><option value="7">Domingo</option>
+        </select>
+      </label>
+      <label class="fx-campo"><span>Hora</span><input class="fx-input" type="number" min="0" max="23" name="hora" style="width:90px" /></label>
+      <label class="fx-campo"><span>Copias que se conservan</span><input class="fx-input" type="number" min="1" max="52" name="conservar" style="width:120px" /></label>
+      <button class="fx-btn" type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <div class="fx-card">
+    <h2>Restaurar una copia</h2>
+    <p class="fx-nota">Sustituye <strong>todos</strong> los datos actuales por los de la copia. Lo actual se guarda antes en una carpeta aparte del servidor
+      (<code>data/antes-de-restaurar-…</code>) por si hubiera que volver atrás. La aplicación se reinicia sola.</p>
+    <div class="fx-fila" style="margin-top:8px">
+      <input type="file" id="archivo" accept=".zip,application/zip" />
+      <button class="fx-btn fx-btn-peligro" id="restaurar-archivo">Restaurar desde este ZIP</button>
+    </div>
+  </div>
+
+  <script src="/plugin-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

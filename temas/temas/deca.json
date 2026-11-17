@@ -1,0 +1,15 @@
+{
+  "id": "deca",
+  "nombre": "Gestor DeCA",
+  "descripcion": "El mismo aspecto que Gestor DeCA y eCMR: claro y limpio, con menú lateral sin barra de color y bordes suaves.",
+  "autor": "Facturador",
+  "claro": { "canvas": "#F7F8FB", "surface": "#FFFFFF", "subtle": "#F0F2F7", "stroke": "#E2E5EB", "fg": "#202533", "muted": "#6D7483",
+    "brand": "#4F79D8", "brand-hover": "#4267BA", "brand-fg": "#3155AA", "brand-soft": "#EEF3FF", "suite": "#FBFCFE", "suite-fg": "#202533",
+    "danger": "#BD3F46", "success": "#2E8B66", "warning": "#B78120" },
+  "oscuro": { "canvas": "#14171F", "surface": "#1D212B", "subtle": "#242936", "stroke": "#2D3340", "fg": "#E8EAF0", "muted": "#98A0B0",
+    "brand": "#5B86E5", "brand-hover": "#7396EE", "brand-fg": "#A9C2FF", "brand-soft": "#243253", "suite": "#171A22", "suite-fg": "#E8EAF0",
+    "danger": "#EF6B72", "success": "#4CC08F", "warning": "#E0A94A" },
+  "fuente": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+  "radio": 7, "sombra": "suave", "menu": "lateral", "iconos": { "trazo": 1.8 },
+  "mosaicos": { "blue": "#4F79D8", "teal": "#2E8B8B", "purple": "#7A63C9", "orange": "#D07A2C", "green": "#2E8B66", "magenta": "#B4508E", "slate": "#5A6275" }
+}

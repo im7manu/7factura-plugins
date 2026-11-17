@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Temas</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Temas</h1>
+  <p class="fx-sub">El tema elegido se aplica a toda la empresa: a todos los usuarios y también a la pantalla de inicio de sesión.</p>
+
+  <div class="fx-card">
+    <div class="fx-fila" style="justify-content:space-between;margin-bottom:12px">
+      <h2 style="margin:0">Elige un tema</h2>
+      <div class="fx-fila">
+        <label class="fx-btn" for="importar">Importar tema (JSON)</label>
+        <input type="file" id="importar" accept=".json,application/json" hidden />
+      </div>
+    </div>
+    <div class="galeria" id="galeria"></div>
+  </div>
+
+  <div class="fx-card">
+    <h2>Pantalla de inicio de sesión</h2>
+    <p class="fx-nota">Sube fotos de tu empresa (camiones, instalaciones, equipo…). Si subes más de una, van rotando. JPG, PNG o WEBP, hasta 8 MB y un máximo de 10.</p>
+    <div class="fondos" id="fondos"></div>
+    <div class="fx-fila" style="margin-top:12px">
+      <label class="fx-btn fx-btn-primario" for="subir-fondo">Subir foto</label>
+      <input type="file" id="subir-fondo" accept="image/jpeg,image/png,image/webp" multiple hidden />
+    </div>
+    <form class="fx-fila" id="form-login" style="margin-top:16px">
+      <label class="fx-campo"><span>Segundos entre fotos</span><input class="fx-input" type="number" min="3" max="120" name="intervalo" style="width:120px" /></label>
+      <label class="fx-campo" style="flex:1;min-width:240px"><span>Frase sobre las fotos (opcional)</span><input class="fx-input" name="texto_login" maxlength="160" placeholder="Transportes por toda la península desde 1998" /></label>
+      <button class="fx-btn" type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <div class="fx-card">
+    <h2>Crear tus propios temas</h2>
+    <p class="fx-nota">Exporta cualquier tema como punto de partida, cambia su <code>id</code>, nombre y colores, y vuelve a importarlo.
+      El formato está explicado en el README del plugin. Si creas uno bonito, ¡compártelo en el repositorio de plugins!</p>
+  </div>
+
+  <script src="/plugin-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
