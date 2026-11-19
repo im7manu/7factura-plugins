@@ -1,0 +1,11 @@
+{
+  "id": "gestor-deca",
+  "nombre": "Gestor DeCA y eCMR",
+  "version": "1.0.0",
+  "descripcion": "Conecta Facturador con Gestor DeCA y eCMR: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje o por tonelada, recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
+  "autor": "im7manu",
+  "licencia": "MIT",
+  "app_min": "1.0.0",
+  "server": "server.mjs",
+  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Gestor DeCA" }] }
+}

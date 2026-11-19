@@ -7,6 +7,7 @@ Plugins oficiales de [Facturador](https://github.com/im7manu/facturador). Se ins
 | [`copias`](copias/) | Copia semanal automática y bajo demanda de todos los datos, descargable en ZIP para guardarla fuera del servidor, y restauración |
 | [`temas`](temas/) | Cambia el aspecto de toda la aplicación y las fotos de la pantalla de inicio de sesión. Incluye Metro, Gestor DeCA, Frutiger Aero, Windows clásico, Alto contraste y Nórdico, y admite temas propios |
 | [`diseno-pdf`](diseno-pdf/) | Diseños de PDF por tipo de documento o serie (5 plantillas, colores, tipografía, logo, columnas, textos, marca de agua), firma manuscrita o sello en imagen, y firma digital con certificado (FNMT…) |
+| [`gestor-deca`](gestor-deca/) | Conecta con Gestor DeCA y eCMR: factura los envíos (por viaje o por tonelada) en una factura en borrador, recuerda los ya facturados y copia clientes, vehículos y conductores |
 
 ## Instalar
 

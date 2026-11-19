@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestor DeCA y eCMR</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Gestor DeCA y eCMR</h1>
+  <p class="fx-sub" id="sub">Factura los envíos de Gestor DeCA y copia sus clientes, vehículos y conductores.</p>
+
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="facturar" aria-selected="true">Facturar envíos</button>
+    <button role="tab" data-p="sincronizar">Sincronizar datos</button>
+    <button role="tab" data-p="conexion">Conexión</button>
+  </nav>
+
+  <section id="p-facturar">
+    <div id="sin-conexion" class="fx-card aviso" hidden>
+      Todavía no está conectado con Gestor DeCA. Un administrador debe configurarlo en la pestaña <strong>Conexión</strong>.
+    </div>
+    <div class="fx-card">
+      <div class="fx-fila filtros">
+        <label class="fx-campo"><span class="fx-etiqueta">Desde</span><input type="date" class="fx-input" id="desde" /></label>
+        <label class="fx-campo"><span class="fx-etiqueta">Hasta</span><input type="date" class="fx-input" id="hasta" /></label>
+        <label class="fx-campo"><span class="fx-etiqueta">Tipo</span>
+          <select class="fx-select" id="tipo"><option value="">DeCA y eCMR</option><option value="deca">Solo DeCA</option><option value="ecmr">Solo eCMR</option></select></label>
+        <label class="casilla"><input type="checkbox" id="pendientes" checked /> Solo sin facturar</label>
+        <button class="fx-btn" id="buscar">Buscar</button>
+      </div>
+    </div>
+    <div id="grupos"></div>
+    <p class="fx-nota" id="vacio" hidden>No hay envíos en esas fechas.</p>
+  </section>
+
+  <section id="p-sincronizar" hidden>
+    <div class="fx-card">
+      <h2>Copiar datos de Gestor DeCA a Facturador</h2>
+      <p class="fx-nota">Se añaden a Facturador los que falten, comparando por NIF (clientes y proveedores), matrícula (vehículos) y DNI (conductores). No se modifica ni se borra nada de lo que ya existe.</p>
+      <div class="fx-fila" style="margin-top:12px">
+        <button class="fx-btn" id="comparar">Comparar</button>
+        <button class="fx-btn fx-btn-primario" id="sincronizar" disabled>Añadir los que faltan</button>
+      </div>
+      <div id="resumen-sinc" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section id="p-conexion" hidden>
+    <div class="fx-card">
+      <h2>Conexión con Gestor DeCA</h2>
+      <ol class="fx-nota pasos">
+        <li>En Gestor DeCA, entra como administrador en <strong>Usuarios › Integraciones</strong> y pulsa <strong>Nueva integración</strong>.</li>
+        <li>Copia el token (empieza por <code>deca_</code>) y la dirección del gestor, y pégalos aquí.</li>
+      </ol>
+      <p class="fx-nota">El token es de solo lectura: Facturador puede leer los envíos y los datos, pero no cambiar nada en Gestor DeCA. Se guarda cifrado.</p>
+      <div class="fx-grid" style="margin-top:12px">
+        <label class="fx-campo"><span class="fx-etiqueta">Dirección de Gestor DeCA</span><input class="fx-input" id="url" placeholder="https://gestor.tuempresa.com" /></label>
+        <label class="fx-campo"><span class="fx-etiqueta">Token de integración</span><input class="fx-input" id="token" type="password" autocomplete="off" placeholder="deca_…" /></label>
+      </div>
+      <p class="fx-nota" id="estado-conexion"></p>
+      <div class="fx-fila" style="margin-top:12px">
+        <button class="fx-btn fx-btn-primario" id="guardar">Comprobar y guardar</button>
+        <button class="fx-btn fx-btn-peligro" id="desconectar" hidden>Desconectar</button>
+      </div>
+      <p class="fx-nota" id="solo-admin" hidden>Solo un administrador puede cambiar la conexión.</p>
+    </div>
+  </section>
+
+  <script src="/plugin-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
