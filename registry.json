@@ -21,6 +21,16 @@
       "repo": "https://github.com/im7manu/facturador-plugins/tree/main/diseno-pdf"
     },
     {
+      "id": "gestor-deca",
+      "nombre": "Gestor DeCA y eCMR",
+      "version": "1.0.0",
+      "descripcion": "Conecta Facturador con Gestor DeCA y eCMR: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje o por tonelada, recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/facturador-plugins/releases/download/gestor-deca-v1.0.0/gestor-deca-1.0.0.tar.gz",
+      "sha256": "41d064496cd1c4e64dd4d7b84910a95a6e8206e952d5760bd839a37f7556c86b",
+      "repo": "https://github.com/im7manu/facturador-plugins/tree/main/gestor-deca"
+    },
+    {
       "id": "temas",
       "nombre": "Temas",
       "version": "1.0.0",
