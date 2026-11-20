@@ -20,8 +20,13 @@ Personaliza el aspecto de los PDF de todos los documentos (facturas, presupuesto
 
 Se pueden usar las dos a la vez.
 
+## Novedades de la 1.1.0
+
+- Deja sitio al final del documento para los plugins que añaden contenido (p. ej. el QR de pago) antes del pie.
+- Ofrece el logotipo del diseño por defecto a otros plugins (p. ej. el estado de cuenta).
+
 ## Cómo funciona
 
-Usa los puntos de extensión `pdf.generar` (dibuja el documento) y `pdf.postprocesar` (aplica la firma digital). Si se desactiva el plugin, se vuelve al diseño estándar de Facturador.
+Usa los puntos de extensión `pdf.generar` (dibuja el documento) y `pdf.postprocesar` (aplica la firma digital). Si se desactiva el plugin, se vuelve al diseño estándar de 7Factura.
 
 Dependencias incluidas en el paquete: `node-forge` (lectura del certificado) y `@signpdf` (firma PAdES).

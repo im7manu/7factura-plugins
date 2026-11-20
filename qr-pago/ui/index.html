@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR de pago</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" />
+</head>
+<body>
+  <h1>QR de pago por transferencia</h1>
+  <p class="fx-sub">Un código QR en el PDF para que tus clientes preparen la transferencia desde su app bancaria.</p>
+  <div class="fx-card aviso fx-nota">El QR solo prepara la transferencia con los datos de la factura: el cliente la revisa y la confirma en su banco. No cobra nada ni marca la factura como pagada. Lleva el importe <strong>pendiente</strong> (si hay cobros parciales, el resto), y no aparece en facturas ya pagadas ni en borradores. Algunas apps bancarias no leen este formato (estándar europeo EPC).</div>
+  <div class="dos">
+    <form class="fx-card" id="cfg">
+      <label class="casilla"><input type="checkbox" name="activo" /> <strong>Añadir el QR a los PDF</strong></label>
+      <div class="fx-grid" style="margin-top:10px">
+        <label class="fx-campo"><span>IBAN</span><input class="fx-input" name="iban" placeholder="Vacío = el de los datos de la empresa" /></label>
+        <label class="fx-campo"><span>Beneficiario</span><input class="fx-input" name="beneficiario" placeholder="Vacío = la razón social" /></label>
+        <label class="fx-campo"><span>BIC (opcional)</span><input class="fx-input" name="bic" /></label>
+        <label class="fx-campo"><span>Concepto de la transferencia</span><input class="fx-input" name="referencia" /></label>
+      </div>
+      <p class="fx-nota">En el concepto puedes usar {numero} y {cliente}.</p>
+      <h3>Documentos con QR</h3>
+      <label class="casilla"><input type="checkbox" data-tipo="factura" /> Facturas</label>
+      <label class="casilla"><input type="checkbox" data-tipo="proforma" /> Facturas proforma</label>
+      <label class="casilla"><input type="checkbox" data-tipo="pedido" /> Pedidos</label>
+      <br /><label class="casilla"><input type="checkbox" name="texto" /> Mostrar también el IBAN, el importe y el concepto en texto</label>
+      <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario">Guardar</button></div>
+      <p class="fx-nota" id="solo-admin" hidden>Solo un administrador puede cambiar esta configuración.</p>
+    </form>
+    <div class="fx-card"><h2>Vista previa</h2><div id="previa" style="max-width:220px;background:#fff;padding:8px;border-radius:6px"></div><p class="fx-nota" id="datos"></p></div>
+  </div>
+  <script src="/plugin-sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

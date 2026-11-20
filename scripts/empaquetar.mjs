@@ -1,12 +1,12 @@
 // Empaqueta cada plugin en dist/<id>-<version>.tar.gz y genera registry.json con su SHA-256.
-// Uso: node scripts/empaquetar.mjs [usuario/repo]   (por defecto im7manu/facturador-plugins)
+// Uso: node scripts/empaquetar.mjs [usuario/repo]   (por defecto im7manu/7factura-plugins)
 // Después: crea en GitHub una Release con la etiqueta <id>-v<version> para cada plugin y sube su .tar.gz.
 import { execFileSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const repo = process.argv[2] || 'im7manu/facturador-plugins';
+const repo = process.argv[2] || 'im7manu/7factura-plugins';
 const raiz = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const dist = path.join(raiz, 'dist');
 fs.mkdirSync(dist, { recursive: true });
@@ -17,7 +17,7 @@ for (const dir of fs.readdirSync(raiz).sort()) {
   const m = JSON.parse(fs.readFileSync(manifiesto, 'utf8'));
   if (m.id !== dir) throw new Error(`La carpeta ${dir} debe llamarse como su id (${m.id})`);
   const archivo = path.join(dist, `${m.id}-${m.version}.tar.gz`);
-  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=.DS_Store', '--exclude=package-lock.json', '--exclude=.bin', '-C', path.join(raiz, dir), '.'],
+  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=node_modules/@img', '--exclude=node_modules/sharp', '--exclude=node_modules/@types', '--exclude=*.d.ts', '--exclude=*.map', '--exclude=.DS_Store', '--exclude=package-lock.json', '--exclude=.bin', '-C', path.join(raiz, dir), '.'],
     { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   const sha256 = crypto.createHash('sha256').update(fs.readFileSync(archivo)).digest('hex');
   plugins.push({

@@ -1,15 +1,16 @@
-// Utilidades para probar los plugins contra un servidor real de Facturador (../facturador).
+// Utilidades para probar los plugins contra un servidor real de 7Factura (../facturador).
 import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-export const APP = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../facturador');
+// La aplicación clonada al lado: ../7factura (o ../facturador, el nombre antiguo)
+export const APP = ['../../7factura', '../../facturador'].map((x) => path.resolve(path.dirname(new URL(import.meta.url).pathname), x)).find((p) => fs.existsSync(p)) || path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../7factura');
 export const RAIZ = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
 export function empaquetar(id) {
   const archivo = path.join(os.tmpdir(), `${id}-prueba-${Date.now()}.tar.gz`);
-  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=.bin', '--exclude=package-lock.json', '-C', path.join(RAIZ, id), '.'], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
+  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=node_modules/@img', '--exclude=node_modules/sharp', '--exclude=node_modules/@types', '--exclude=*.d.ts', '--exclude=*.map', '--exclude=.bin', '--exclude=package-lock.json', '-C', path.join(RAIZ, id), '.'], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   return fs.readFileSync(archivo);
 }
 

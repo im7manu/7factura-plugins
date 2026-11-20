@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estado de cuenta</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" />
+</head>
+<body>
+  <h1>Estado de cuenta de cliente</h1>
+  <p class="fx-sub">Facturas, rectificativas, cobros y saldo pendiente de un cliente en un periodo. Solo cuenta facturas emitidas.</p>
+  <div class="fx-card">
+    <div class="fx-fila">
+      <label class="fx-campo" style="min-width:260px"><span>Cliente</span><select class="fx-select" id="cliente"></select></label>
+      <label class="fx-campo"><span>Desde</span><input class="fx-input" type="date" id="desde" /></label>
+      <label class="fx-campo"><span>Hasta</span><input class="fx-input" type="date" id="hasta" /></label>
+      <button class="fx-btn fx-btn-primario" id="ver">Ver</button>
+    </div>
+    <div style="margin-top:8px">
+      <label class="casilla"><input type="checkbox" id="pagadas" checked /> Incluir facturas pagadas</label>
+      <label class="casilla"><input type="checkbox" id="detalle" checked /> Detalle de cobros parciales</label>
+      <label class="casilla"><input type="checkbox" id="vencimientos" checked /> Vencimientos y días de retraso</label>
+      <label class="casilla"><input type="checkbox" id="banco" /> Datos bancarios para pagar</label>
+    </div>
+    <label class="fx-campo" id="campo-instr" hidden style="margin-top:6px"><span>Instrucciones de pago (opcional)</span><input class="fx-input" id="instrucciones" /></label>
+  </div>
+  <div id="resultado"></div>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

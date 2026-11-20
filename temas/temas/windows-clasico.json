@@ -2,7 +2,7 @@
   "id": "windows-clasico",
   "nombre": "Windows clásico",
   "descripcion": "Escritorio de los 90: gris, bordes en relieve, barra de título azul marino y esquinas cuadradas.",
-  "autor": "Facturador",
+  "autor": "7Factura",
   "modo": "claro",
   "claro": { "canvas": "#008080", "surface": "#C0C0C0", "subtle": "#D4D0C8", "stroke": "#808080", "fg": "#000000", "muted": "#303030",
     "brand": "#000080", "brand-hover": "#1084D0", "brand-fg": "#000080", "brand-soft": "#D4D0C8", "suite": "#000080", "suite-fg": "#FFFFFF",

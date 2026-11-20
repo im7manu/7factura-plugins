@@ -1,11 +1,18 @@
 {
   "id": "gestor-deca",
-  "nombre": "Gestor DeCA y eCMR",
-  "version": "1.0.0",
-  "descripcion": "Conecta Facturador con Gestor DeCA y eCMR: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje o por tonelada, recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
+  "nombre": "7DeCA",
+  "version": "1.1.0",
+  "descripcion": "Conecta 7Factura con 7DeCA: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje, por tonelada o por kilómetro (con km editables antes de facturar), recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
   "autor": "im7manu",
   "licencia": "MIT",
   "app_min": "1.0.0",
   "server": "server.mjs",
-  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Gestor DeCA" }] }
+  "ui": {
+    "entrada": "ui/index.html",
+    "menu": [
+      {
+        "titulo": "7DeCA"
+      }
+    ]
+  }
 }

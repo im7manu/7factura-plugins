@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Horas</title>
+<link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" /></head>
+<body>
+  <h1>Registro de horas</h1>
+  <p class="fx-sub">Apunta el tiempo dedicado a cada cliente y conviértelo en una factura en borrador.</p>
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="registro" aria-selected="true">Registrar</button>
+    <button role="tab" data-p="facturar">Facturar</button>
+    <button role="tab" data-p="proyectos">Proyectos</button>
+    <button role="tab" data-p="informe">Informe</button>
+    <button role="tab" data-p="config">Tarifas</button>
+  </nav>
+  <section id="p-registro">
+    <div class="fx-card" id="crono"></div>
+    <form class="fx-card" id="f-reg"><h2 id="reg-titulo">Añadir horas a mano</h2>
+      <div class="fx-grid">
+        <label class="fx-campo"><span>Proyecto</span><select class="fx-select" name="proyecto_id" required></select></label>
+        <label class="fx-campo"><span>Fecha</span><input class="fx-input" type="date" name="fecha" /></label>
+        <label class="fx-campo"><span>Horas (p. ej. 1,5)</span><input class="fx-input" name="horas" inputmode="decimal" /></label>
+        <label class="fx-campo"><span>o de… a…</span><span class="fx-fila"><input class="fx-input" type="time" name="inicio_h" style="width:110px" /><input class="fx-input" type="time" name="fin_h" style="width:110px" /></span></label>
+        <label class="fx-campo"><span>Tarifa propia (€/h, opcional)</span><input class="fx-input" type="number" step="0.01" name="tarifa" /></label>
+      </div>
+      <label class="fx-campo" style="margin-top:8px"><span>Descripción (sale en la factura)</span><input class="fx-input" name="descripcion" /></label>
+      <label class="casilla"><input type="checkbox" name="facturable" checked /> Facturable</label>
+      <input type="hidden" name="id" />
+      <div class="fx-fila" style="margin-top:8px"><button class="fx-btn fx-btn-primario">Guardar</button><button type="button" class="fx-btn" id="reg-cancelar" hidden>Cancelar edición</button></div>
+    </form>
+    <div class="fx-card"><div class="fx-fila"><label class="casilla"><input type="checkbox" id="mios" checked /> Solo mis registros</label><select class="fx-select" id="r-estado" style="max-width:200px"><option value="">Todos</option><option value="pendiente">Pendientes de facturar</option><option value="facturado">Facturados</option></select></div>
+      <table class="fx-tabla" style="margin-top:8px"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Descripción</th><th class="num">Horas</th><th class="num ocultar-movil">Importe</th><th>Estado</th><th></th></tr></thead><tbody id="registros"></tbody></table></div>
+  </section>
+  <section id="p-facturar" hidden>
+    <div class="fx-card"><div class="fx-fila"><label class="fx-campo"><span>Cliente</span><select class="fx-select" id="fa-cliente"></select></label><label class="fx-campo"><span>Hasta</span><input class="fx-input" type="date" id="fa-hasta" /></label></div>
+      <table class="fx-tabla" style="margin-top:10px"><thead><tr><th><input type="checkbox" id="fa-todos" checked /></th><th>Fecha</th><th>Proyecto</th><th>Descripción</th><th class="num">Horas</th><th class="num">€/h</th><th class="num">Importe</th></tr></thead><tbody id="fa-lista"></tbody></table>
+      <div class="fx-fila" style="margin-top:10px"><span id="fa-total" class="fx-nota"></span><button class="fx-btn fx-btn-primario" id="fa-crear">Crear factura en borrador</button></div>
+      <p class="fx-nota">Los registros pasan a «facturados» y no se vuelven a proponer. Si eliminas el borrador, vuelven a estar pendientes.</p></div>
+    <div class="fx-card" id="recuperables" hidden></div>
+  </section>
+  <section id="p-proyectos" hidden>
+    <form class="fx-card" id="f-proy"><h2 id="proy-titulo">Nuevo proyecto</h2><div class="fx-grid">
+      <label class="fx-campo"><span>Cliente</span><select class="fx-select" name="cliente_id" required></select></label>
+      <label class="fx-campo"><span>Nombre</span><input class="fx-input" name="nombre" required /></label>
+      <label class="fx-campo"><span>Tarifa (€/h, vacío = la del cliente o general)</span><input class="fx-input" type="number" step="0.01" name="tarifa" /></label>
+      <label class="fx-campo"><span>Concepto en la factura</span><input class="fx-input" name="concepto" placeholder="Vacío = nombre del proyecto" /></label></div>
+      <label class="casilla"><input type="checkbox" name="archivado" /> Archivado</label><input type="hidden" name="id" />
+      <div class="fx-fila" style="margin-top:8px"><button class="fx-btn fx-btn-primario">Guardar</button><button type="button" class="fx-btn" id="proy-nuevo" hidden>Nuevo</button></div></form>
+    <div class="fx-card"><table class="fx-tabla"><thead><tr><th>Proyecto</th><th>Cliente</th><th class="num">€/h</th><th class="num">Pendiente</th><th>Estado</th><th></th></tr></thead><tbody id="proyectos"></tbody></table></div>
+  </section>
+  <section id="p-informe" hidden>
+    <div class="fx-card"><div class="fx-fila"><input class="fx-input" type="date" id="in-desde" /><input class="fx-input" type="date" id="in-hasta" /><button class="fx-btn" id="in-ver">Ver</button></div>
+      <table class="fx-tabla" style="margin-top:10px"><thead><tr><th>Cliente</th><th>Proyecto</th><th class="num">Total</th><th class="num">Facturable</th><th class="num">Interno</th><th class="num">Facturado</th><th class="num">Pendiente</th><th class="num">Importe pendiente</th></tr></thead><tbody id="informe"></tbody></table></div>
+  </section>
+  <section id="p-config" hidden>
+    <form class="fx-card" id="cfg"><div class="fx-grid">
+      <label class="fx-campo"><span>Tarifa general (€/h)</span><input class="fx-input" type="number" step="0.01" name="tarifa" /></label>
+      <label class="fx-campo"><span>Redondeo del tiempo</span><select class="fx-select" name="redondeo"><option value="1">Al minuto</option><option value="5">Bloques de 5 min</option><option value="10">Bloques de 10 min</option><option value="15">Bloques de 15 min</option><option value="30">Bloques de 30 min</option><option value="60">Horas completas</option></select></label>
+      <label class="fx-campo"><span>IVA de las líneas (%)</span><input class="fx-input" type="number" step="0.01" name="iva" /></label>
+      <label class="fx-campo"><span>IRPF (%)</span><input class="fx-input" type="number" step="0.01" name="irpf" /></label>
+      <label class="fx-campo"><span>En la factura</span><select class="fx-select" name="agrupar"><option value="registro">Una línea por registro</option><option value="proyecto">Una línea por proyecto</option></select></label></div>
+      <p class="fx-nota">El redondeo se aplica a cada registro hacia arriba (p. ej. 20 min con bloques de 15 = 30 min).</p>
+      <h3>Tarifa por cliente</h3><div id="tc"></div><select class="fx-select" id="tc-add" style="max-width:300px"><option value="">Añadir cliente…</option></select>
+      <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario">Guardar</button></div></form>
+  </section>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

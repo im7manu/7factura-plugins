@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Stock</title>
+<link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" /></head>
+<body>
+  <h1>Control de stock</h1>
+  <p class="fx-sub">Existencias de los productos que elijas (almacén único).</p>
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="inventario" aria-selected="true">Existencias</button>
+    <button role="tab" data-p="recepciones">Recibir mercancía</button>
+    <button role="tab" data-p="config">Configuración</button>
+  </nav>
+  <section id="p-inventario">
+    <div class="fx-card">
+      <div class="fx-fila"><input class="fx-input" id="buscar" placeholder="Buscar producto" style="max-width:280px" /><label class="casilla"><input type="checkbox" id="solo-control" checked /> Solo con control de stock</label></div>
+      <table class="fx-tabla" style="margin-top:10px"><thead><tr><th>Producto</th><th class="num">Existencias</th><th class="num ocultar-movil">Mínimo</th><th>Estado</th><th></th></tr></thead><tbody id="productos"></tbody></table>
+    </div>
+    <div class="fx-card" id="ficha" hidden></div>
+  </section>
+  <section id="p-recepciones" hidden>
+    <div class="fx-card"><p class="fx-nota">Compras emitidas (albaranes, facturas o pedidos de proveedor) con productos de stock aún sin recibir. Confirma las unidades que han llegado al almacén.</p>
+      <table class="fx-tabla"><thead><tr><th>Documento</th><th>Proveedor</th><th>Producto</th><th class="num">Pendiente</th><th class="num">Recibido ahora</th></tr></thead><tbody id="recep"></tbody></table>
+      <div class="fx-fila" style="margin-top:10px"><label class="fx-campo"><span>Fecha de entrada</span><input class="fx-input" type="date" id="recep-fecha" /></label><button class="fx-btn fx-btn-primario" id="recep-ok">Registrar entrada</button></div></div>
+  </section>
+  <section id="p-config" hidden>
+    <form class="fx-card" id="cfg"><h2>Cuándo salen las unidades del almacén</h2>
+      <label class="radio"><input type="radio" name="salida" value="albaran" /> Al emitir el <strong>albarán</strong> (o la factura, si se factura sin albarán)</label>
+      <label class="radio"><input type="radio" name="salida" value="factura" /> Al emitir la <strong>factura</strong></label>
+      <p class="fx-nota">Los borradores nunca mueven stock. Una rectificativa devuelve las unidades de la factura original. Las entradas de compras se confirman en «Recibir mercancía».</p>
+      <button class="fx-btn fx-btn-primario">Guardar</button></form>
+  </section>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

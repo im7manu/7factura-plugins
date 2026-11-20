@@ -2,7 +2,7 @@
   "id": "alto-contraste",
   "nombre": "Alto contraste",
   "descripcion": "Para quien ve con dificultad: fondo negro, texto blanco, acentos amarillos y bordes muy marcados.",
-  "autor": "Facturador",
+  "autor": "7Factura",
   "modo": "oscuro",
   "claro": {
     "canvas": "#000000",

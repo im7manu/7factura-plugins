@@ -2,7 +2,7 @@
   "id": "metro",
   "nombre": "Metro",
   "descripcion": "El diseño por defecto: inspirado en Microsoft 365, plano, con barra azul y mosaicos de colores.",
-  "autor": "Facturador",
+  "autor": "7Factura",
   "claro": { "canvas": "#FAF9F8", "surface": "#FFFFFF", "subtle": "#F3F2F1", "stroke": "#E0E0E0", "fg": "#242424", "muted": "#616161",
     "brand": "#0F6CBD", "brand-hover": "#115EA3", "brand-fg": "#0F6CBD", "brand-soft": "#EBF3FC", "suite": "#0F6CBD", "suite-fg": "#FFFFFF",
     "danger": "#C50F1F", "success": "#107C10", "warning": "#BC4B09" },

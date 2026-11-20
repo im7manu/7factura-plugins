@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Aceptación de presupuestos</title>
+<link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" /></head>
+<body>
+  <h1>Aceptación de presupuestos</h1>
+  <p class="fx-sub">El enlace se crea desde cada presupuesto emitido, con el botón «Enlace de aceptación».</p>
+  <div class="fx-card aviso fx-nota">La respuesta queda registrada con fecha, hora, IP y la copia del PDF exacto que vio el cliente. Es una evidencia de su conformidad, pero <strong>no</strong> una firma electrónica avanzada ni cualificada.</div>
+  <form class="fx-card" id="cfg"><h2>Configuración</h2>
+    <div class="fx-grid"><label class="fx-campo"><span>Caducidad por defecto (días)</span><input class="fx-input" type="number" min="1" max="365" name="caducidad_dias" /></label>
+    <label class="fx-campo"><span>Dirección pública de 7Factura (opcional)</span><input class="fx-input" name="url_publica" placeholder="https://facturas.miempresa.com" /></label></div>
+    <p class="fx-nota">Los clientes deben poder abrir esa dirección desde Internet. Si la dejas vacía, se usa la dirección con la que entras ahora.</p>
+    <label class="casilla"><input type="checkbox" name="comentarios" /> Permitir comentarios</label>
+    <label class="casilla"><input type="checkbox" name="pedir_nombre" /> Pedir el nombre de quien responde</label>
+    <label class="casilla"><input type="checkbox" name="pedir_email" /> Pedir su correo</label>
+    <label class="casilla"><input type="checkbox" name="avisar_correo" /> Avisarme por correo cuando respondan</label>
+    <div class="fx-fila" style="margin-top:10px"><button class="fx-btn fx-btn-primario">Guardar</button></div>
+  </form>
+  <div class="fx-card"><h2>Enlaces</h2><table class="fx-tabla"><thead><tr><th>Presupuesto</th><th>Cliente</th><th>Creado</th><th>Estado</th></tr></thead><tbody id="hist"></tbody></table></div>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

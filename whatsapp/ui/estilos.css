@@ -1,0 +1,17 @@
+[hidden] { display: none !important; }
+.pestanas { display: flex; gap: 4px; border-bottom: 1px solid rgb(var(--stroke)); margin-bottom: 16px; }
+.pestanas button { font: inherit; background: none; border: 0; padding: 8px 12px; cursor: pointer; color: rgb(var(--muted)); border-bottom: 2px solid transparent; }
+.pestanas button[aria-selected="true"] { color: rgb(var(--fg)); font-weight: 600; border-bottom-color: rgb(var(--brand)); }
+.aviso { border-left: 4px solid rgb(var(--warning)); }
+.error { border-left: 4px solid rgb(var(--danger)); padding: 8px 12px; background: rgb(var(--subtle)); margin: 8px 0; }
+.estado { font-size: 18px; font-weight: 700; margin: 2px 0 4px; }
+.e-conectado { color: rgb(var(--success)); } .e-desconectado { color: rgb(var(--muted)); } .e-esperando_qr, .e-conectando, .e-reconectando { color: rgb(var(--warning)); }
+.qr { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.qr-img { background: #fff; padding: 8px; border-radius: 8px; line-height: 0; } .qr-img svg { width: 240px; height: 240px; }
+.casilla { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; margin: 8px 0; }
+textarea.fx-textarea { min-height: 80px; }
+.ok { color: rgb(var(--success)); font-weight: 600; } .mal { color: rgb(var(--danger)); font-weight: 600; }
+.adjunto { display: flex; gap: 6px; align-items: center; margin: 10px 0; }
+.hist { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgb(var(--stroke)); display: grid; gap: 4px; font-size: 13px; }
+body.ventana { padding: 4px 2px; }
+.fx-card { overflow-x: auto; }

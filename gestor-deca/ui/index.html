@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gestor DeCA y eCMR</title>
+  <title>7DeCA</title>
   <link rel="stylesheet" href="/plugin-sdk.css" />
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <h1>Gestor DeCA y eCMR</h1>
-  <p class="fx-sub" id="sub">Factura los envíos de Gestor DeCA y copia sus clientes, vehículos y conductores.</p>
+  <h1>7DeCA</h1>
+  <p class="fx-sub" id="sub">Factura los envíos de 7DeCA y copia sus clientes, vehículos y conductores.</p>
 
   <nav class="pestanas" role="tablist">
     <button role="tab" data-p="facturar" aria-selected="true">Facturar envíos</button>
+    <button role="tab" data-p="km">Cobro por km</button>
     <button role="tab" data-p="sincronizar">Sincronizar datos</button>
     <button role="tab" data-p="conexion">Conexión</button>
   </nav>
 
   <section id="p-facturar">
     <div id="sin-conexion" class="fx-card aviso" hidden>
-      Todavía no está conectado con Gestor DeCA. Un administrador debe configurarlo en la pestaña <strong>Conexión</strong>.
+      Todavía no está conectado con 7DeCA. Un administrador debe configurarlo en la pestaña <strong>Conexión</strong>.
     </div>
     <div class="fx-card">
       <div class="fx-fila filtros">
@@ -35,10 +36,40 @@
     <p class="fx-nota" id="vacio" hidden>No hay envíos en esas fechas.</p>
   </section>
 
+  <section id="p-km" hidden>
+    <div class="fx-card">
+      <h2>Cobro por kilómetro</h2>
+      <p class="fx-nota">Al facturar «Por kilómetro», cada envío se cobra según sus km. Podrás corregir los km de cada envío antes de crear la factura, y la factura queda en borrador para revisarla antes de emitirla.</p>
+      <div id="km-rutas" class="fx-nota" style="margin:8px 0"></div>
+      <p class="fx-nota" id="km-solo-admin" hidden>Solo un administrador puede cambiar esta configuración.</p>
+      <form id="km-form">
+        <h3>Qué km se cobran</h3>
+        <label class="radio"><input type="radio" name="cuenta" value="ida" /> <span><strong>Solo ida</strong>: del lugar de carga a la última descarga, pasando por todas.</span></label>
+        <label class="radio"><input type="radio" name="cuenta" value="ida_vuelta" /> <span><strong>Ida y vuelta</strong>: la ida más la vuelta desde la última descarga al lugar de carga.</span></label>
+        <label class="radio"><input type="radio" name="cuenta" value="base" /> <span><strong>Desde la base</strong>: de tu base (almacén o garaje) a la carga, las descargas y vuelta a la base.</span></label>
+        <label class="fx-campo" id="km-base-campo"><span>Dirección de la base</span><input class="fx-input" name="base" placeholder="Dirección, población o coordenadas" /></label>
+        <label class="casilla"><input type="checkbox" name="preferir_deca" /> Usar los km calculados (o corregidos) en 7DeCA cuando el envío los tenga</label>
+        <h3>Precio</h3>
+        <div class="fx-grid">
+          <label class="fx-campo"><span>Precio por km (€)</span><input class="fx-input" type="number" step="0.001" min="0" name="precio_km" /></label>
+          <label class="fx-campo"><span>Importe mínimo por viaje (€)</span><input class="fx-input" type="number" step="0.01" min="0" name="minimo" placeholder="0 = sin mínimo" /></label>
+          <label class="fx-campo"><span>Redondeo de los km</span><select class="fx-select" name="redondeo"><option value="decimas">A décimas (123,4 km)</option><option value="entero">Al km más cercano</option><option value="arriba">Siempre hacia arriba</option></select></label>
+        </div>
+        <h3>Precio por cliente</h3>
+        <p class="fx-nota">Si un cliente tiene precio propio, se usa en lugar del general.</p>
+        <table class="fx-tabla"><thead><tr><th>Cliente</th><th>NIF</th><th class="num">€/km</th><th></th></tr></thead><tbody id="km-clientes"></tbody></table>
+        <div class="fx-fila" style="margin-top:8px">
+          <select class="fx-select" id="km-cliente-nuevo" style="max-width:360px"><option value="">Añadir un cliente…</option></select>
+        </div>
+        <div class="fx-fila" style="margin-top:16px"><button class="fx-btn fx-btn-primario" type="submit">Guardar</button></div>
+      </form>
+    </div>
+  </section>
+
   <section id="p-sincronizar" hidden>
     <div class="fx-card">
-      <h2>Copiar datos de Gestor DeCA a Facturador</h2>
-      <p class="fx-nota">Se añaden a Facturador los que falten, comparando por NIF (clientes y proveedores), matrícula (vehículos) y DNI (conductores). No se modifica ni se borra nada de lo que ya existe.</p>
+      <h2>Copiar datos de 7DeCA a 7Factura</h2>
+      <p class="fx-nota">Se añaden a 7Factura los que falten, comparando por NIF (clientes y proveedores), matrícula (vehículos) y DNI (conductores). No se modifica ni se borra nada de lo que ya existe.</p>
       <div class="fx-fila" style="margin-top:12px">
         <button class="fx-btn" id="comparar">Comparar</button>
         <button class="fx-btn fx-btn-primario" id="sincronizar" disabled>Añadir los que faltan</button>
@@ -49,14 +80,14 @@
 
   <section id="p-conexion" hidden>
     <div class="fx-card">
-      <h2>Conexión con Gestor DeCA</h2>
+      <h2>Conexión con 7DeCA</h2>
       <ol class="fx-nota pasos">
-        <li>En Gestor DeCA, entra como administrador en <strong>Usuarios › Integraciones</strong> y pulsa <strong>Nueva integración</strong>.</li>
+        <li>En 7DeCA, entra como administrador en <strong>Usuarios › Integraciones</strong> y pulsa <strong>Nueva integración</strong>.</li>
         <li>Copia el token (empieza por <code>deca_</code>) y la dirección del gestor, y pégalos aquí.</li>
       </ol>
-      <p class="fx-nota">El token es de solo lectura: Facturador puede leer los envíos y los datos, pero no cambiar nada en Gestor DeCA. Se guarda cifrado.</p>
+      <p class="fx-nota">El token es de solo lectura: 7Factura puede leer los envíos y los datos, pero no cambiar nada en 7DeCA. Se guarda cifrado.</p>
       <div class="fx-grid" style="margin-top:12px">
-        <label class="fx-campo"><span class="fx-etiqueta">Dirección de Gestor DeCA</span><input class="fx-input" id="url" placeholder="https://gestor.tuempresa.com" /></label>
+        <label class="fx-campo"><span class="fx-etiqueta">Dirección de 7DeCA</span><input class="fx-input" id="url" placeholder="https://gestor.tuempresa.com" /></label>
         <label class="fx-campo"><span class="fx-etiqueta">Token de integración</span><input class="fx-input" id="token" type="password" autocomplete="off" placeholder="deca_…" /></label>
       </div>
       <p class="fx-nota" id="estado-conexion"></p>

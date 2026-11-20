@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhatsApp</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>WhatsApp</h1>
+  <p class="fx-sub">Envía los PDF de tus documentos por WhatsApp desde el número de la empresa.</p>
+  <div class="fx-card aviso fx-nota">WhatsApp Web no es la API oficial de Meta: puede dejar de funcionar si WhatsApp cambia su web, y la sesión puede caducar y pedir volver a vincular el teléfono. Úsalo para enviar documentos de uno en uno, nunca envíos masivos. Esta conexión es independiente del WhatsApp que usa 7Factura para recuperar contraseñas.</div>
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="conexion" aria-selected="true">Conexión</button>
+    <button role="tab" data-p="mensajes">Mensajes</button>
+    <button role="tab" data-p="historial">Historial</button>
+  </nav>
+  <section id="p-conexion"><div class="fx-card" id="conexion"></div></section>
+  <section id="p-mensajes" hidden>
+    <div class="fx-card">
+      <p class="fx-nota">Variables: {cliente}, {empresa}, {numero}, {fecha}, {total}, {vencimiento}, {vencimiento_txt}, {tipo}, {el_documento}, {importe}. El texto se puede cambiar antes de cada envío.</p>
+      <label class="casilla"><input type="checkbox" id="proponer" /> Proponer el envío por WhatsApp al emitir un documento</label>
+      <div id="plantillas" class="fx-grid" style="grid-template-columns:1fr"></div>
+      <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario" id="guardar">Guardar</button></div>
+      <p class="fx-nota" id="solo-admin" hidden>Solo un administrador puede cambiar los mensajes.</p>
+    </div>
+  </section>
+  <section id="p-historial" hidden><div class="fx-card"><table class="fx-tabla"><thead><tr><th>Fecha</th><th>Documento</th><th>Destinatario</th><th>Usuario</th><th>Estado</th></tr></thead><tbody id="historial"></tbody></table></div></section>
+  <script src="/plugin-sdk.js"></script><script src="comun.js"></script><script src="app.js"></script>
+</body>
+</html>

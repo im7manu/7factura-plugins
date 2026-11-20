@@ -49,7 +49,7 @@ export function dibujar(p, d, lib, extra) {
   const T = Math.max(7, Math.min(12, Number(d.tamano) || 9)) - (compacta ? 1 : 0);
 
   const pdf = new PDFDocument({ size: 'A4', margin: 48, bufferPages: true, info: {
-    Title: `${TITULOS[doc.tipo] || 'DOCUMENTO'} ${doc.codigo || 'BORRADOR'}`, Author: empresa.razon_social || '', Creator: 'Facturador (plugin diseno-pdf)',
+    Title: `${TITULOS[doc.tipo] || 'DOCUMENTO'} ${doc.codigo || 'BORRADOR'}`, Author: empresa.razon_social || '', Creator: '7Factura (plugin diseno-pdf)',
   } });
 
   // Tipografía: estándar del PDF o archivo TTF/OTF subido
@@ -380,6 +380,9 @@ export function dibujar(p, d, lib, extra) {
       pdf.fontSize(T - 2).fillColor(c.gris).text(`Firmado digitalmente por ${extra.certificado.titular}${extra.certificado.emisor ? ` (${extra.certificado.emisor})` : ''}.`, xS, yS, { width: 200 });
     }
   }
+
+  // ---- Plugins que añaden algo al final (p. ej. QR de pago), antes del pie ----
+  if (typeof p.alFinal === 'function') y = p.alFinal(pdf, y, { limite: H - 75, margen: M }) ?? y;
 
   // ---- Marca de agua (texto del diseño o BORRADOR) ----
   const marca = doc.estado === 'borrador' ? 'BORRADOR' : (d.marca_agua?.texto || '').trim();

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>7Ruta</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" />
+  <link rel="stylesheet" href="leaflet/leaflet.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>7Ruta</h1>
+  <p class="fx-sub">Calcula rutas y kilómetros con vista previa en el mapa. Los usa el plugin «7DeCA» para facturar por kilómetro.</p>
+
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="calcular" aria-selected="true">Calcular ruta</button>
+    <button role="tab" data-p="config">Configuración</button>
+  </nav>
+
+  <section id="p-calcular">
+    <div id="sin-config" class="fx-card aviso" hidden></div>
+    <div class="fx-card">
+      <div id="lugares"></div>
+      <div class="fx-fila" style="margin-top:8px"><button class="fx-btn" id="anadir">+ Añadir destino</button></div>
+      <div id="opc-calc" class="opciones"></div>
+      <div class="fx-fila"><button class="fx-btn fx-btn-primario" id="calcular">Calcular ruta</button><span class="fx-nota" id="msg"></span></div>
+    </div>
+    <div class="fx-card" id="resultado" hidden>
+      <div id="resumen"></div>
+      <div class="mapa" id="mapa"></div>
+      <div class="fx-nota" id="puntos"></div>
+    </div>
+  </section>
+
+  <section id="p-config" hidden>
+    <div class="fx-card">
+      <p class="fx-nota" id="solo-admin" hidden>Solo un administrador puede cambiar la configuración.</p>
+      <form id="cfg">
+        <h2>Proveedor de mapas</h2>
+        <label class="radio"><input type="radio" name="proveedor" value="ors" /> <span><strong>OpenRouteService</strong> (recomendado): gratis, con rutas para camión. Mapa de OpenStreetMap.</span></label>
+        <label class="radio"><input type="radio" name="proveedor" value="google" /> <span><strong>Google Maps</strong>: con tu propia clave de Google Cloud (necesita una cuenta de facturación; Google incluye un uso mensual gratuito). No tiene rutas para camión.</span></label>
+        <div class="bloque" data-prov="ors">
+          <ol class="fx-nota"><li>Crea una cuenta gratuita en <a href="https://account.heigit.org" target="_blank" rel="noreferrer">account.heigit.org</a> (OpenRouteService).</li><li>Copia tu clave de API y pégala aquí.</li></ol>
+          <label class="fx-campo"><span>Clave de OpenRouteService</span><input class="fx-input" type="password" name="ors_clave" autocomplete="off" /></label>
+          <details class="fx-nota"><summary>Direcciones del servicio (avanzado)</summary>
+            <label class="fx-campo"><span>Rutas</span><input class="fx-input" name="ors_base_ruta" /></label>
+            <label class="fx-campo"><span>Búsqueda de direcciones</span><input class="fx-input" name="ors_base_geo" /></label>
+          </details>
+        </div>
+        <div class="bloque" data-prov="google">
+          <ol class="fx-nota"><li>En <a href="https://console.cloud.google.com/google/maps-apis" target="_blank" rel="noreferrer">Google Cloud</a>, activa Routes API, Geocoding API y Maps JavaScript API.</li><li>Crea una clave de servidor (restringida a esas API y a la IP del servidor) y una clave de navegador (restringida a la dirección de 7Factura).</li></ol>
+          <label class="fx-campo"><span>Clave de servidor (rutas y direcciones)</span><input class="fx-input" type="password" name="google_clave_servidor" autocomplete="off" /></label>
+          <label class="fx-campo"><span>Clave de navegador (para ver el mapa)</span><input class="fx-input" name="google_clave_navegador" autocomplete="off" /></label>
+        </div>
+        <h2>Opciones de ruta por defecto</h2>
+        <div id="opc-cfg" class="opciones"></div>
+        <div class="fx-grid camion">
+          <label class="fx-campo"><span>Peso máximo (t)</span><input class="fx-input" type="number" step="0.5" name="peso_t" /></label>
+          <label class="fx-campo"><span>Altura (m)</span><input class="fx-input" type="number" step="0.05" name="altura_m" /></label>
+          <label class="fx-campo"><span>Anchura (m)</span><input class="fx-input" type="number" step="0.05" name="ancho_m" /></label>
+          <label class="fx-campo"><span>Longitud (m)</span><input class="fx-input" type="number" step="0.1" name="largo_m" /></label>
+          <label class="fx-campo"><span>Carga por eje (t)</span><input class="fx-input" type="number" step="0.5" name="eje_t" /></label>
+        </div>
+        <div class="fx-fila" style="margin-top:14px"><button class="fx-btn fx-btn-primario" type="submit">Guardar</button><button class="fx-btn" type="button" id="probar">Probar conexión</button><span class="fx-nota" id="estado"></span></div>
+      </form>
+    </div>
+  </section>
+
+  <script src="/plugin-sdk.js"></script>
+  <script src="leaflet/leaflet.js"></script>
+  <script src="mapa.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
