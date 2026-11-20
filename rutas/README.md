@@ -5,6 +5,7 @@ Mapas y rutas para [Facturador](https://github.com/im7manu/facturador) 1.3.0 o p
 ## Qué hace
 
 - **Calcular ruta**: escribe el origen y uno o varios destinos (dirección, población o coordenadas como `40.4168, -3.7038`), elige el vehículo y las opciones y verás la ruta en el mapa con los km y la duración.
+- **Direcciones que se completan solas**: en clientes, proveedores y datos de la empresa, al escribir la dirección aparecen sugerencias; al elegir una se rellenan el C.P., la ciudad y la provincia (necesita Facturador 1.3.0).
 - **Opciones de ruta**: camión (con peso, altura, anchura, longitud y carga por eje) o turismo, y evitar peajes, autopistas y autovías o ferris.
 - **Para otros plugins**: el plugin [`gestor-deca`](../gestor-deca/) lo usa para facturar por kilómetro los envíos de Gestor DeCA (los km que falten, la vuelta y los km desde tu base).
 

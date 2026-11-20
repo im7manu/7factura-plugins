@@ -3,6 +3,7 @@
 // - Configura el proveedor de mapas: OpenRouteService por defecto (clave gratuita) o Google Maps con la clave del
 //   administrador. Las claves se guardan cifradas y nunca llegan al navegador (salvo la clave de navegador de Google).
 // - Calculadora de rutas con vista previa en el mapa (camión o coche, evitando peajes, autopistas o ferris).
+// - Sugiere direcciones mientras se escribe en clientes, proveedores y datos de la empresa (punto 'direcciones').
 // - Ofrece el punto de extensión 'rutas' para otros plugins (p. ej. «Gestor DeCA» para facturar por kilómetro):
 //     calcular(textos, opciones) → { km, minutos, linea, puntos, avisos, ... }
 //     configurado() → boolean
@@ -47,6 +48,8 @@ export function register(ctx) {
     return { ...(await rutas().ruta(puntos, opciones)), puntos };
   }
   ctx.extender('rutas', { calcular, configurado, opciones: () => config().opciones });
+  // Sugerencias de direcciones mientras se escribe (campos de dirección de clientes, proveedores y empresa)
+  ctx.extender('direcciones', { sugerir: (q) => rutas().sugerir(q) });
 
   const envolver = (fn) => async (req, res) => {
     try { await fn(req, res); } catch (e) {
