@@ -1,7 +1,7 @@
 {
   "id": "temas",
   "nombre": "Temas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "descripcion": "Cambia el aspecto de toda la aplicación (colores, tipografía, forma, transparencias, menú e iconos) y personaliza la pantalla de inicio de sesión con fotos de tu empresa. Incluye Metro, 7DeCA, Frutiger Aero, Windows clásico, Alto contraste y Nórdico, y admite temas propios.",
   "autor": "im7manu",
   "licencia": "MIT",

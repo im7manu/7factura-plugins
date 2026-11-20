@@ -1,12 +1,12 @@
 // Empaqueta cada plugin en dist/<id>-<version>.tar.gz y genera registry.json con su SHA-256.
-// Uso: node scripts/empaquetar.mjs [usuario/repo]   (por defecto im7manu/facturador-plugins)
+// Uso: node scripts/empaquetar.mjs [usuario/repo]   (por defecto im7manu/7factura-plugins)
 // Después: crea en GitHub una Release con la etiqueta <id>-v<version> para cada plugin y sube su .tar.gz.
 import { execFileSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const repo = process.argv[2] || 'im7manu/facturador-plugins';
+const repo = process.argv[2] || 'im7manu/7factura-plugins';
 const raiz = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const dist = path.join(raiz, 'dist');
 fs.mkdirSync(dist, { recursive: true });

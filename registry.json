@@ -6,9 +6,9 @@
       "version": "1.0.0",
       "descripcion": "Copia semanal automática y bajo demanda de todos los datos, descargable en ZIP para guardarla fuera del servidor. Permite restaurar una copia.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/facturador-plugins/releases/download/copias-v1.0.0/copias-1.0.0.tar.gz",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/copias-v1.0.0/copias-1.0.0.tar.gz",
       "sha256": "73d9e286db3543a4eea82851c97bc9621be8f9e99a861a7baf5bfc5f5260c64a",
-      "repo": "https://github.com/im7manu/facturador-plugins/tree/main/copias"
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/copias"
     },
     {
       "id": "diseno-pdf",
@@ -16,9 +16,9 @@
       "version": "1.0.0",
       "descripcion": "Personaliza los PDF: cinco plantillas, colores, tipografía (también fuentes propias), logo, columnas, textos de cabecera y pie, marca de agua, diseños distintos por tipo de documento o serie, firma manuscrita o sello en imagen y firma digital con certificado (FNMT…).",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/facturador-plugins/releases/download/diseno-pdf-v1.0.0/diseno-pdf-1.0.0.tar.gz",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/diseno-pdf-v1.0.0/diseno-pdf-1.0.0.tar.gz",
       "sha256": "02af9f15c124561887000f9f6384a3de24e9d011bd7da79267372a4d98ec0c91",
-      "repo": "https://github.com/im7manu/facturador-plugins/tree/main/diseno-pdf"
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/diseno-pdf"
     },
     {
       "id": "gestor-deca",
@@ -26,9 +26,9 @@
       "version": "1.0.0",
       "descripcion": "Conecta 7Factura con 7DeCA: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje o por tonelada, recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/facturador-plugins/releases/download/gestor-deca-v1.0.0/gestor-deca-1.0.0.tar.gz",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/gestor-deca-v1.0.0/gestor-deca-1.0.0.tar.gz",
       "sha256": "41d064496cd1c4e64dd4d7b84910a95a6e8206e952d5760bd839a37f7556c86b",
-      "repo": "https://github.com/im7manu/facturador-plugins/tree/main/gestor-deca"
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/gestor-deca"
     },
     {
       "id": "temas",
@@ -36,9 +36,9 @@
       "version": "1.0.0",
       "descripcion": "Cambia el aspecto de toda la aplicación (colores, tipografía, forma, transparencias, menú e iconos) y personaliza la pantalla de inicio de sesión con fotos de tu empresa. Incluye Metro, 7DeCA, Frutiger Aero, Windows clásico, Alto contraste y Nórdico, y admite temas propios.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/facturador-plugins/releases/download/temas-v1.0.0/temas-1.0.0.tar.gz",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/temas-v1.0.0/temas-1.0.0.tar.gz",
       "sha256": "61b28b7540bfc3fcb62d40b5132aa76b8a1d0e3f80e45320d94ffed073252042",
-      "repo": "https://github.com/im7manu/facturador-plugins/tree/main/temas"
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/temas"
     }
   ]
 }

@@ -1,6 +1,6 @@
 # 7Ruta
 
-Mapas y rutas para [7Factura](https://github.com/im7manu/facturador) 1.3.0 o posterior.
+Mapas y rutas para [7Factura](https://github.com/im7manu/7factura) 1.3.0 o posterior.
 
 ## Qué hace
 
@@ -29,4 +29,4 @@ Con Google hacen falta dos claves: una **de servidor** (Routes API y Geocoding A
 
 ## Archivos compartidos
 
-`lib/proveedores.mjs` y `ui/mapa.js` son los mismos que en el plugin «7Ruta» de [7DeCA](https://github.com/im7manu/gestor-deca-plugins). Si cambias uno, cópialo en el otro repositorio.
+`lib/proveedores.mjs` y `ui/mapa.js` son los mismos que en el plugin «7Ruta» de [7DeCA](https://github.com/im7manu/7deca-plugins). Si cambias uno, cópialo en el otro repositorio.

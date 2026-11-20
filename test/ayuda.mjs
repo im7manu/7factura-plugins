@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-export const APP = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../facturador');
+// La aplicación clonada al lado: ../7factura (o ../facturador, el nombre antiguo)
+export const APP = ['../../7factura', '../../facturador'].map((x) => path.resolve(path.dirname(new URL(import.meta.url).pathname), x)).find((p) => fs.existsSync(p)) || path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../7factura');
 export const RAIZ = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
 export function empaquetar(id) {

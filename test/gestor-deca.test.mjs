@@ -1,4 +1,4 @@
-// Prueba de extremo a extremo del plugin «7DeCA» contra un 7DeCA real (../gestor-deca-ecmr)
+// Prueba de extremo a extremo del plugin «7DeCA» contra un 7DeCA real (../7deca)
 // y un 7Factura real (../facturador), cada uno con su base de datos temporal.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { arrancar, cliente, instalar, preparar, RAIZ } from './ayuda.mjs';
 
-const DECA = path.resolve(RAIZ, '../gestor-deca-ecmr');
+const DECA = ['7deca', 'gestor-deca-ecmr'].map((x) => path.resolve(RAIZ, '..', x)).find((p) => fs.existsSync(p)) || path.resolve(RAIZ, '../7deca');
 
 async function arrancarDeca(dir, puerto) {
   const srv = spawn(process.execPath, ['server.js'], {
@@ -24,7 +24,7 @@ async function arrancarDeca(dir, puerto) {
   return srv;
 }
 
-test('gestor-deca: conexión, envíos, factura y sincronización', { skip: !fs.existsSync(path.join(DECA, 'integracion.js')) && 'falta ../gestor-deca-ecmr con la API de integración' }, async () => {
+test('gestor-deca: conexión, envíos, factura y sincronización', { skip: !fs.existsSync(path.join(DECA, 'integracion.js')) && 'falta ../7deca con la API de integración' }, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'fx-gestor-deca-'));
   const PD = 9311, PF = 9312;
   const deca = await arrancarDeca(path.join(dir, 'deca'), PD);

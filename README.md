@@ -1,6 +1,6 @@
 # Plugins de 7Factura
 
-Plugins oficiales de [7Factura](https://github.com/im7manu/facturador). Se instalan desde la página **Plugins** de la aplicación (solo administradores), que lee el `registry.json` de este repositorio.
+Plugins oficiales de [7Factura](https://github.com/im7manu/7factura). Se instalan desde la página **Plugins** de la aplicación (solo administradores), que lee el `registry.json` de este repositorio.
 
 | Plugin | Qué hace |
 |---|---|
@@ -23,7 +23,7 @@ Plugins oficiales de [7Factura](https://github.com/im7manu/facturador). Se insta
 
 En 7Factura, como administrador: **Plugins** → *Disponibles* → **Instalar**. La aplicación descarga el paquete de la *Release* correspondiente y comprueba su SHA-256 con el de `registry.json` antes de instalarlo. Las actualizaciones aparecen en la misma página.
 
-Sin conexión: descarga el `.tar.gz` de la [Release](https://github.com/im7manu/facturador-plugins/releases) y súbelo en *Instalar desde un archivo*.
+Sin conexión: descarga el `.tar.gz` de la [Release](https://github.com/im7manu/7factura-plugins/releases) y súbelo en *Instalar desde un archivo*.
 
 Cada plugin guarda sus datos en `data/plugins-datos/<id>/` de la instalación: nada sale del servidor.
 
@@ -49,7 +49,7 @@ Las pruebas necesitan el repositorio de la aplicación clonado al lado (`../fact
 
 ## Crear un plugin
 
-Mira [`docs/plugins.md`](https://github.com/im7manu/facturador/blob/main/docs/plugins.md) en el repositorio de la aplicación. Además de rutas propias y una página en el menú, un plugin puede:
+Mira [`docs/plugins.md`](https://github.com/im7manu/7factura/blob/main/docs/plugins.md) en el repositorio de la aplicación. Además de rutas propias y una página en el menú, un plugin puede:
 
 - `ctx.extender('pdf.generar', fn)`: dibujar el PDF de los documentos.
 - `ctx.extender('pdf.postprocesar', fn)`: modificar el PDF ya generado (por ejemplo, firmarlo).

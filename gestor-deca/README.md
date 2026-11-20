@@ -1,6 +1,6 @@
 # 7DeCA
 
-Conecta 7Factura con [7DeCA](https://github.com/im7manu/gestor-deca-ecmr) (versión 1.4.0 o posterior; para recibir los km de cada envío, 1.5.0 con el plugin «7Ruta»).
+Conecta 7Factura con [7DeCA](https://github.com/im7manu/7deca) (versión 1.4.0 o posterior; para recibir los km de cada envío, 1.5.0 con el plugin «7Ruta»).
 
 ## Qué hace
 
