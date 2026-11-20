@@ -13,6 +13,7 @@
 
   <nav class="pestanas" role="tablist">
     <button role="tab" data-p="facturar" aria-selected="true">Facturar envíos</button>
+    <button role="tab" data-p="km">Cobro por km</button>
     <button role="tab" data-p="sincronizar">Sincronizar datos</button>
     <button role="tab" data-p="conexion">Conexión</button>
   </nav>
@@ -33,6 +34,36 @@
     </div>
     <div id="grupos"></div>
     <p class="fx-nota" id="vacio" hidden>No hay envíos en esas fechas.</p>
+  </section>
+
+  <section id="p-km" hidden>
+    <div class="fx-card">
+      <h2>Cobro por kilómetro</h2>
+      <p class="fx-nota">Al facturar «Por kilómetro», cada envío se cobra según sus km. Podrás corregir los km de cada envío antes de crear la factura, y la factura queda en borrador para revisarla antes de emitirla.</p>
+      <div id="km-rutas" class="fx-nota" style="margin:8px 0"></div>
+      <p class="fx-nota" id="km-solo-admin" hidden>Solo un administrador puede cambiar esta configuración.</p>
+      <form id="km-form">
+        <h3>Qué km se cobran</h3>
+        <label class="radio"><input type="radio" name="cuenta" value="ida" /> <span><strong>Solo ida</strong>: del lugar de carga a la última descarga, pasando por todas.</span></label>
+        <label class="radio"><input type="radio" name="cuenta" value="ida_vuelta" /> <span><strong>Ida y vuelta</strong>: la ida más la vuelta desde la última descarga al lugar de carga.</span></label>
+        <label class="radio"><input type="radio" name="cuenta" value="base" /> <span><strong>Desde la base</strong>: de tu base (almacén o garaje) a la carga, las descargas y vuelta a la base.</span></label>
+        <label class="fx-campo" id="km-base-campo"><span>Dirección de la base</span><input class="fx-input" name="base" placeholder="Dirección, población o coordenadas" /></label>
+        <label class="casilla"><input type="checkbox" name="preferir_deca" /> Usar los km calculados (o corregidos) en Gestor DeCA cuando el envío los tenga</label>
+        <h3>Precio</h3>
+        <div class="fx-grid">
+          <label class="fx-campo"><span>Precio por km (€)</span><input class="fx-input" type="number" step="0.001" min="0" name="precio_km" /></label>
+          <label class="fx-campo"><span>Importe mínimo por viaje (€)</span><input class="fx-input" type="number" step="0.01" min="0" name="minimo" placeholder="0 = sin mínimo" /></label>
+          <label class="fx-campo"><span>Redondeo de los km</span><select class="fx-select" name="redondeo"><option value="decimas">A décimas (123,4 km)</option><option value="entero">Al km más cercano</option><option value="arriba">Siempre hacia arriba</option></select></label>
+        </div>
+        <h3>Precio por cliente</h3>
+        <p class="fx-nota">Si un cliente tiene precio propio, se usa en lugar del general.</p>
+        <table class="fx-tabla"><thead><tr><th>Cliente</th><th>NIF</th><th class="num">€/km</th><th></th></tr></thead><tbody id="km-clientes"></tbody></table>
+        <div class="fx-fila" style="margin-top:8px">
+          <select class="fx-select" id="km-cliente-nuevo" style="max-width:360px"><option value="">Añadir un cliente…</option></select>
+        </div>
+        <div class="fx-fila" style="margin-top:16px"><button class="fx-btn fx-btn-primario" type="submit">Guardar</button></div>
+      </form>
+    </div>
   </section>
 
   <section id="p-sincronizar" hidden>
