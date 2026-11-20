@@ -381,6 +381,9 @@ export function dibujar(p, d, lib, extra) {
     }
   }
 
+  // ---- Plugins que añaden algo al final (p. ej. QR de pago), antes del pie ----
+  if (typeof p.alFinal === 'function') y = p.alFinal(pdf, y, { limite: H - 75, margen: M }) ?? y;
+
   // ---- Marca de agua (texto del diseño o BORRADOR) ----
   const marca = doc.estado === 'borrador' ? 'BORRADOR' : (d.marca_agua?.texto || '').trim();
   const opacidad = doc.estado === 'borrador' ? 0.12 : Math.max(0.03, Math.min(0.4, Number(d.marca_agua?.opacidad) || 0.08));

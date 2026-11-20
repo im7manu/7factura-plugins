@@ -1,0 +1,26 @@
+/* Estilos comunes de las páginas de plugins (se copian en cada plugin). */
+[hidden] { display: none !important; }
+.pestanas { display: flex; gap: 4px; border-bottom: 1px solid rgb(var(--stroke)); margin-bottom: 16px; flex-wrap: wrap; }
+.pestanas button { font: inherit; background: none; border: 0; padding: 8px 12px; cursor: pointer; color: rgb(var(--muted)); border-bottom: 2px solid transparent; }
+.pestanas button[aria-selected="true"] { color: rgb(var(--fg)); font-weight: 600; border-bottom-color: rgb(var(--brand)); }
+.aviso { border-left: 4px solid rgb(var(--warning)); }
+.error { border-left: 4px solid rgb(var(--danger)); padding: 8px 12px; background: rgb(var(--subtle)); margin: 8px 0; }
+.casilla { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; margin: 4px 12px 4px 0; }
+.radio { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; cursor: pointer; }
+.ok { color: rgb(var(--success)); font-weight: 600; } .mal { color: rgb(var(--danger)); font-weight: 600; } .atencion { color: rgb(var(--warning)); font-weight: 600; }
+.num { text-align: right; font-variant-numeric: tabular-nums; } .mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+.fx-tabla input.fx-input, .fx-tabla select.fx-select { min-height: 28px; padding: 2px 6px; }
+.chip { display: inline-block; border-radius: 999px; padding: 1px 8px; font-size: 12px; background: rgb(var(--subtle)); }
+.chip.ok { background: rgb(var(--success) / .15); } .chip.mal { background: rgb(var(--danger) / .15); } .chip.atencion { background: rgb(var(--warning) / .15); }
+.vacio { color: rgb(var(--muted)); text-align: center; padding: 16px; }
+h3 { font-size: 14px; margin: 16px 0 6px; }
+.dos { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.previa { white-space: pre-wrap; background: rgb(var(--subtle)); border-radius: var(--radio); padding: 10px 12px; font-size: 13px; }
+@media (max-width: 640px) { body { padding: 12px; } .ocultar-movil { display: none; } }
+.panel { border: 1px solid rgb(var(--stroke)); border-radius: var(--radio); padding: 12px; margin-top: 10px; background: rgb(var(--subtle)); }
+tr.sel td { background: rgb(var(--brand-soft)); }
+tr.clic { cursor: pointer; } tr.clic:hover td { background: rgb(var(--subtle)); }
+.ingreso { color: rgb(var(--success)); } .cargo { color: rgb(var(--danger)); }
+.mapa-col { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); margin: 10px 0; }
+.tabla-previa { overflow-x: auto; max-height: 260px; } .tabla-previa td, .tabla-previa th { white-space: nowrap; font-size: 12px; }
+input.importe { width: 110px; text-align: right; }

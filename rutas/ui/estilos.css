@@ -14,3 +14,4 @@
 .avisos { border-left: 4px solid rgb(var(--warning)); padding: 6px 10px; margin-top: 8px; background: rgb(var(--subtle)); }
 form h2 { margin-top: 18px; } form h2:first-child { margin-top: 0; }
 .camion { margin-bottom: 8px; }
+.fx-card { overflow-x: auto; }

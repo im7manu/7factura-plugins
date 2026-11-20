@@ -9,7 +9,7 @@ export const RAIZ = path.resolve(path.dirname(new URL(import.meta.url).pathname)
 
 export function empaquetar(id) {
   const archivo = path.join(os.tmpdir(), `${id}-prueba-${Date.now()}.tar.gz`);
-  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=.bin', '--exclude=package-lock.json', '-C', path.join(RAIZ, id), '.'], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
+  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=node_modules/@img', '--exclude=node_modules/sharp', '--exclude=node_modules/@types', '--exclude=*.d.ts', '--exclude=*.map', '--exclude=.bin', '--exclude=package-lock.json', '-C', path.join(RAIZ, id), '.'], { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   return fs.readFileSync(archivo);
 }
 

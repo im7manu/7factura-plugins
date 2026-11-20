@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conciliación bancaria</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" />
+</head>
+<body>
+  <h1>Conciliación bancaria</h1>
+  <p class="fx-sub">Importa el extracto de tu banco en CSV y relaciona cada movimiento con sus facturas. No se conecta con el banco ni pide claves.</p>
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="movimientos" aria-selected="true">Movimientos</button>
+    <button role="tab" data-p="importar">Importar extracto</button>
+    <button role="tab" data-p="cuentas">Cuentas</button>
+    <button role="tab" data-p="reglas">Reglas</button>
+  </nav>
+
+  <section id="p-movimientos">
+    <div class="fx-card">
+      <div class="fx-fila">
+        <label class="fx-campo"><span>Cuenta</span><select class="fx-select" id="cuenta"></select></label>
+        <label class="fx-campo"><span>Mostrar</span><select class="fx-select" id="filtro"><option value="pendiente">Pendientes</option><option value="conciliado">Conciliados</option><option value="descartado">Descartados</option><option value="">Todos</option></select></label>
+        <button class="fx-btn" id="exportar">Exportar CSV</button>
+      </div>
+      <div id="sin-cuentas" class="fx-nota" hidden>Crea primero una cuenta en la pestaña <strong>Cuentas</strong> e importa un extracto.</div>
+      <table class="fx-tabla" style="margin-top:12px"><thead><tr><th>Fecha</th><th>Concepto</th><th class="num">Importe</th><th>Estado</th></tr></thead><tbody id="movs"></tbody></table>
+    </div>
+    <div class="fx-card" id="detalle" hidden></div>
+  </section>
+
+  <section id="p-importar" hidden>
+    <div class="fx-card">
+      <div class="fx-fila">
+        <label class="fx-campo"><span>Cuenta</span><select class="fx-select" id="imp-cuenta"></select></label>
+        <label class="fx-campo"><span>Codificación</span><select class="fx-select" id="imp-cod"><option value="utf-8">UTF-8</option><option value="windows-1252">Windows (ANSI / Latin-1)</option></select></label>
+        <label class="fx-campo"><span>Archivo CSV del banco</span><input type="file" class="fx-input" id="imp-archivo" accept=".csv,.txt,text/csv" /></label>
+      </div>
+      <p class="fx-nota">Descárgalo desde tu banca online («Exportar movimientos» en CSV). Si tu banco solo da Excel, ábrelo y guárdalo como CSV.</p>
+      <div id="imp-config" hidden>
+        <h3>Vista previa</h3><div class="tabla-previa"><table class="fx-tabla" id="imp-previa"></table></div>
+        <h3>¿Qué hay en cada columna?</h3>
+        <div class="mapa-col" id="imp-cols"></div>
+        <div class="fx-grid">
+          <label class="fx-campo"><span>Filas de cabecera que saltar</span><input class="fx-input" type="number" min="0" id="imp-saltar" value="1" /></label>
+          <label class="fx-campo"><span>Formato de fecha</span><select class="fx-select" id="imp-ffecha"><option value="dd/mm/aaaa">dd/mm/aaaa</option><option value="aaaa-mm-dd">aaaa-mm-dd</option><option value="mm/dd/aaaa">mm/dd/aaaa</option></select></label>
+          <label class="fx-campo"><span>Separador decimal</span><select class="fx-select" id="imp-dec"><option value=",">Coma (1.234,56)</option><option value=".">Punto (1,234.56)</option></select></label>
+          <label class="fx-campo"><span>Separador de columnas</span><select class="fx-select" id="imp-sep"><option value=";">Punto y coma</option><option value=",">Coma</option><option value="&#9;">Tabulador</option></select></label>
+        </div>
+        <label class="casilla"><input type="checkbox" id="imp-invertir" /> Los cargos aparecen en positivo y los abonos en negativo (invertir signo)</label>
+        <label class="casilla"><input type="checkbox" id="imp-guardar" checked /> Recordar esta configuración para la cuenta</label>
+        <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario" id="imp-boton">Importar movimientos</button><span class="fx-nota" id="imp-res"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="p-cuentas" hidden>
+    <div class="fx-card"><table class="fx-tabla"><thead><tr><th>Cuenta</th><th>IBAN</th><th class="num">Pendientes</th><th>Último movimiento</th><th></th></tr></thead><tbody id="cuentas"></tbody></table></div>
+    <form class="fx-card" id="form-cuenta"><h2 id="fc-titulo">Nueva cuenta</h2>
+      <div class="fx-grid"><label class="fx-campo"><span>Nombre</span><input class="fx-input" name="nombre" required placeholder="Banco Santander principal" /></label>
+      <label class="fx-campo"><span>IBAN (opcional)</span><input class="fx-input" name="iban" /></label>
+      <label class="fx-campo"><span>Margen de días para buscar coincidencias</span><input class="fx-input" type="number" min="0" max="60" name="margen_dias" value="10" /></label></div>
+      <input type="hidden" name="id" />
+      <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario">Guardar cuenta</button><button type="button" class="fx-btn" id="fc-nueva" hidden>Nueva</button></div>
+    </form>
+  </section>
+
+  <section id="p-reglas" hidden>
+    <div class="fx-card"><p class="fx-nota">Las reglas se crean al conciliar o descartar un movimiento: «cuando el concepto contenga…, es de este cliente/proveedor» o «…descartarlo» (comisiones, traspasos internos).</p>
+      <table class="fx-tabla"><thead><tr><th>Si el concepto contiene</th><th>Entonces</th><th></th></tr></thead><tbody id="reglas"></tbody></table></div>
+  </section>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

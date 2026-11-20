@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recordatorios de cobro</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" />
+</head>
+<body>
+  <h1>Recordatorios de cobro</h1>
+  <p class="fx-sub">Avisos por correo a tus clientes antes y después del vencimiento de sus facturas.</p>
+  <div id="modo" class="fx-card aviso"></div>
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-p="plan" aria-selected="true">Próximos avisos</button>
+    <button role="tab" data-p="config">Configuración</button>
+    <button role="tab" data-p="registro">Registro</button>
+  </nav>
+
+  <section id="p-plan">
+    <div class="fx-card">
+      <div class="fx-fila"><label class="fx-campo"><span>Mostrar</span><select class="fx-select" id="dias"><option value="0">Hoy</option><option value="7" selected>Próximos 7 días</option><option value="30">Próximos 30 días</option></select></label>
+        <button class="fx-btn" id="prueba">Enviarme un correo de prueba</button></div>
+      <table class="fx-tabla" style="margin-top:12px"><thead><tr><th>Día</th><th>Factura</th><th>Cliente</th><th class="ocultar-movil">Vence</th><th class="num">Pendiente</th><th>Aviso</th><th></th></tr></thead><tbody id="plan"></tbody></table>
+    </div>
+    <div class="fx-card" id="vista" hidden><h2 id="vista-asunto"></h2><div class="fx-nota" id="vista-para"></div><div class="previa" id="vista-texto"></div><div class="fx-fila" style="margin-top:10px"><button class="fx-btn" id="excluir">No enviar avisos de esta factura</button></div></div>
+  </section>
+
+  <section id="p-config" hidden>
+    <form id="cfg" class="fx-card">
+      <p class="fx-nota" id="solo-admin" hidden>Solo un administrador puede cambiar la configuración.</p>
+      <h2>Envío</h2>
+      <label class="casilla"><input type="checkbox" name="envio_real" /> <strong>Enviar los recordatorios automáticamente a los clientes</strong></label>
+      <p class="fx-nota">Mientras esté desactivado, el plugin solo calcula y muestra qué se enviaría (modo de prueba).</p>
+      <label class="fx-campo" style="max-width:420px"><span>Cuenta de correo que envía</span><select class="fx-select" name="usuario_id"></select></label>
+      <div class="fx-grid" style="margin-top:8px">
+        <label class="fx-campo"><span>Enviar desde las (h)</span><input class="fx-input" type="number" min="0" max="23" name="desde" /></label>
+        <label class="fx-campo"><span>Hasta las (h)</span><input class="fx-input" type="number" min="1" max="24" name="hasta" /></label>
+      </div>
+      <label class="casilla"><input type="checkbox" name="laborables" /> Solo de lunes a viernes</label>
+      <h2 style="margin-top:16px">Cuándo avisar</h2>
+      <label class="casilla"><input type="checkbox" name="antes_activo" /> Antes del vencimiento:</label> <input class="fx-input" type="number" min="1" max="60" name="antes_dias" style="width:80px" /> días antes
+      <br /><label class="casilla"><input type="checkbox" name="dia_activo" /> El día del vencimiento</label>
+      <br /><label class="casilla"><input type="checkbox" name="despues_activo" /> Después de vencer, a los</label> <input class="fx-input" name="despues_dias" style="width:140px" placeholder="7, 15, 30" /> días
+      <h3>PDF de la factura</h3>
+      <label class="radio"><input type="radio" name="adjuntar" value="primero" /> Adjuntarlo solo en el primer aviso de cada factura</label>
+      <label class="radio"><input type="radio" name="adjuntar" value="siempre" /> Adjuntarlo en todos los avisos</label>
+      <label class="radio"><input type="radio" name="adjuntar" value="nunca" /> No adjuntarlo</label>
+      <h2 style="margin-top:16px">Mensajes</h2>
+      <p class="fx-nota">Variables: {cliente}, {numero}, {fecha}, {vencimiento}, {pendiente}, {importe}, {recibo}, {empresa}, {contacto}, {datos_pago} (IBAN de la empresa y referencia).</p>
+      <div id="plantillas"></div>
+      <h2 style="margin-top:16px">Exclusiones y pausas</h2>
+      <div class="dos">
+        <div><h3>Clientes excluidos (nunca reciben avisos)</h3><div id="excl-cli"></div><select class="fx-select" id="add-excl-cli"><option value="">Añadir cliente…</option></select></div>
+        <div><h3>Pausas temporales</h3><div id="pausas"></div><div class="fx-fila"><select class="fx-select" id="add-pausa-cli"><option value="">Cliente…</option></select><input class="fx-input" type="date" id="add-pausa-fecha" style="width:160px" /><button class="fx-btn" type="button" id="add-pausa">Pausar hasta</button></div></div>
+      </div>
+      <h3>Facturas excluidas</h3><div id="excl-doc" class="fx-nota"></div>
+      <div class="fx-fila" style="margin-top:16px"><button class="fx-btn fx-btn-primario" type="submit">Guardar</button></div>
+    </form>
+  </section>
+
+  <section id="p-registro" hidden>
+    <div class="fx-card"><table class="fx-tabla"><thead><tr><th>Fecha</th><th>Factura</th><th>Para</th><th>Aviso</th><th class="num">Pendiente</th><th>Estado</th></tr></thead><tbody id="registro"></tbody></table></div>
+  </section>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facturas periódicas</title>
+  <link rel="stylesheet" href="/plugin-sdk.css" /><link rel="stylesheet" href="comun.css" />
+</head>
+<body>
+  <h1>Facturas periódicas</h1>
+  <p class="fx-sub">Cuotas, mantenimientos, alquileres o licencias: en cada periodo se prepara la factura en <strong>borrador</strong> para que la revises y la emitas.</p>
+  <div id="pendientes"></div>
+  <div class="fx-card">
+    <div class="fx-fila" style="justify-content:space-between"><h2 style="margin:0">Plantillas</h2><button class="fx-btn fx-btn-primario" id="nueva">+ Nueva plantilla</button></div>
+    <table class="fx-tabla" style="margin-top:10px"><thead><tr><th>Plantilla</th><th>Cliente</th><th>Cada</th><th>Próxima</th><th class="num ocultar-movil">Importe</th><th>Estado</th><th></th></tr></thead><tbody id="lista"></tbody></table>
+  </div>
+  <form class="fx-card" id="editor" hidden>
+    <h2 id="ed-titulo">Nueva plantilla</h2>
+    <div class="fx-grid">
+      <label class="fx-campo"><span>Nombre *</span><input class="fx-input" name="nombre" required placeholder="Mantenimiento mensual" /></label>
+      <label class="fx-campo"><span>Cliente *</span><select class="fx-select" name="cliente_id" required></select></label>
+      <label class="fx-campo"><span>Periodicidad</span><select class="fx-select" name="periodicidad"><option value="mensual">Mensual</option><option value="trimestral">Trimestral</option><option value="semestral">Semestral</option><option value="anual">Anual</option><option value="semanal">Semanal</option></select></label>
+      <label class="fx-campo" id="campo-dia"><span>Día del mes</span><input class="fx-input" type="number" min="1" max="31" name="dia" placeholder="1-31 (si no existe, el último)" /></label>
+      <label class="fx-campo"><span>Primera factura *</span><input class="fx-input" type="date" name="inicio" required /></label>
+      <label class="fx-campo"><span>Hasta (opcional)</span><input class="fx-input" type="date" name="fin" /></label>
+      <label class="fx-campo" id="campo-proxima" hidden><span>Próxima factura</span><input class="fx-input" type="date" name="proxima" /></label>
+      <label class="fx-campo"><span>Serie</span><select class="fx-select" name="serie"></select></label>
+      <label class="fx-campo"><span>Forma de pago</span><select class="fx-select" name="forma_pago"></select></label>
+      <label class="fx-campo"><span>Vencimiento (días tras la factura)</span><input class="fx-input" type="number" min="0" max="365" name="dias_vencimiento" placeholder="Según la forma de pago" /></label>
+      <label class="fx-campo"><span>Su referencia</span><input class="fx-input" name="referencia" placeholder="p. ej. Cuota {periodo}" /></label>
+    </div>
+    <h3>Líneas</h3>
+    <p class="fx-nota">En los textos puedes usar {periodo}, {mes}, {año}, {trimestre} o {fecha}: se sustituyen en cada factura (p. ej. «Mantenimiento de {periodo}» → «Mantenimiento de diciembre de 2026»).</p>
+    <div style="overflow-x:auto"><table class="fx-tabla lineas"><thead><tr><th>Concepto</th><th class="c-cant">Cant.</th><th class="c-precio">Precio</th><th class="c-pct">Dto. %</th><th class="c-pct">IVA %</th><th class="c-pct">IRPF %</th><th></th></tr></thead><tbody id="lineas"></tbody></table></div>
+    <div class="fx-fila" style="margin-top:6px"><button type="button" class="fx-btn" id="add-linea">+ Línea</button><select class="fx-select" id="add-producto" style="max-width:300px"><option value="">+ Desde un producto…</option></select><span class="fx-nota" id="total"></span></div>
+    <label class="fx-campo" style="margin-top:10px"><span>Observaciones (salen en el PDF)</span><textarea class="fx-textarea" name="observaciones" rows="2"></textarea></label>
+    <label class="fx-campo" style="margin-top:10px"><span>Notas internas</span><textarea class="fx-textarea" name="notas" rows="2"></textarea></label>
+    <div class="fx-fila" style="margin-top:12px"><button class="fx-btn fx-btn-primario">Guardar</button><button type="button" class="fx-btn" id="cancelar">Cancelar</button></div>
+    <div id="historial"></div>
+  </form>
+  <script src="/plugin-sdk.js"></script><script src="app.js"></script>
+</body>
+</html>

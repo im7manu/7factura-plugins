@@ -77,6 +77,8 @@ export function register(ctx) {
   });
 
   // ---- Puntos de extensión del núcleo ----
+  // Logotipo del diseño por defecto, para otros plugins (p. ej. el estado de cuenta)
+  ctx.extender('logo', () => { const l = leerDisenos(); const d = l.find((x) => x.por_defecto) || l[0]; return archivo(d?.logo?.archivo); });
   ctx.extender('pdf.generar', (params) => {
     const d = elegirDiseno(leerDisenos(), params.doc);
     return d ? generar(params, d) : null;

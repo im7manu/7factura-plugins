@@ -1,0 +1,12 @@
+{
+  "id": "aceptacion",
+  "nombre": "Aceptación de presupuestos",
+  "version": "1.0.0",
+  "descripcion": "Envía al cliente un enlace privado para ver un presupuesto, descargar el PDF y aceptarlo o rechazarlo con un comentario. Registra la respuesta con fecha, hora y la versión exacta del presupuesto, y te avisa. No emite facturas: conviertes el presupuesto como siempre.",
+  "autor": "im7manu",
+  "licencia": "MIT",
+  "app_min": "1.3.0",
+  "server": "server.mjs",
+  "publico": "publico",
+  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Aceptación de presupuestos" }] }
+}

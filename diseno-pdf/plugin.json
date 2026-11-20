@@ -1,11 +1,18 @@
 {
   "id": "diseno-pdf",
   "nombre": "Diseño de PDF",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "descripcion": "Personaliza los PDF: cinco plantillas, colores, tipografía (también fuentes propias), logo, columnas, textos de cabecera y pie, marca de agua, diseños distintos por tipo de documento o serie, firma manuscrita o sello en imagen y firma digital con certificado (FNMT…).",
   "autor": "im7manu",
   "licencia": "MIT",
   "app_min": "0.1.0",
   "server": "server.mjs",
-  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Diseño de PDF" }] }
+  "ui": {
+    "entrada": "ui/index.html",
+    "menu": [
+      {
+        "titulo": "Diseño de PDF"
+      }
+    ]
+  }
 }

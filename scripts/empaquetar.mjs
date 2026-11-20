@@ -17,7 +17,7 @@ for (const dir of fs.readdirSync(raiz).sort()) {
   const m = JSON.parse(fs.readFileSync(manifiesto, 'utf8'));
   if (m.id !== dir) throw new Error(`La carpeta ${dir} debe llamarse como su id (${m.id})`);
   const archivo = path.join(dist, `${m.id}-${m.version}.tar.gz`);
-  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=.DS_Store', '--exclude=package-lock.json', '--exclude=.bin', '-C', path.join(raiz, dir), '.'],
+  execFileSync('tar', ['-czf', archivo, '--exclude=test', '--exclude=node_modules/@img', '--exclude=node_modules/sharp', '--exclude=node_modules/@types', '--exclude=*.d.ts', '--exclude=*.map', '--exclude=.DS_Store', '--exclude=package-lock.json', '--exclude=.bin', '-C', path.join(raiz, dir), '.'],
     { env: { ...process.env, COPYFILE_DISABLE: '1' } });
   const sha256 = crypto.createHash('sha256').update(fs.readFileSync(archivo)).digest('hex');
   plugins.push({
