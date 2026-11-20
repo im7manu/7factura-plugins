@@ -1,44 +1,144 @@
 {
   "plugins": [
     {
+      "id": "aceptacion",
+      "nombre": "Aceptación de presupuestos",
+      "version": "1.0.0",
+      "descripcion": "Envía al cliente un enlace privado para ver un presupuesto, descargar el PDF y aceptarlo o rechazarlo con un comentario. Registra la respuesta con fecha, hora y la versión exacta del presupuesto, y te avisa. No emite facturas: conviertes el presupuesto como siempre.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/aceptacion-v1.0.0/aceptacion-1.0.0.tar.gz",
+      "sha256": "67fd4ac19a34352065981ca76d9fa4a1fe3ef77f1b259bfb2a16f36fd69b6cfd",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/aceptacion"
+    },
+    {
+      "id": "conciliacion",
+      "nombre": "Conciliación bancaria",
+      "version": "1.0.0",
+      "descripcion": "Importa los movimientos del banco en CSV (columnas configurables por banco), propone con qué facturas o recibos coincide cada movimiento y, al confirmarlo, registra el cobro o pago, total, parcial o repartido entre varias facturas. Sin claves bancarias ni open banking.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/conciliacion-v1.0.0/conciliacion-1.0.0.tar.gz",
+      "sha256": "6b2aea7da900709195b185c76db3a2b91ac28321bdec0a66f6f62f202206efaa",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/conciliacion"
+    },
+    {
       "id": "copias",
       "nombre": "Copias de seguridad",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "descripcion": "Copia semanal automática y bajo demanda de todos los datos, descargable en ZIP para guardarla fuera del servidor. Permite restaurar una copia.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/7factura-plugins/releases/download/copias-v1.0.0/copias-1.0.0.tar.gz",
-      "sha256": "73d9e286db3543a4eea82851c97bc9621be8f9e99a861a7baf5bfc5f5260c64a",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/copias-v1.0.1/copias-1.0.1.tar.gz",
+      "sha256": "2b15f0cba684539fb00300fdf7bf6c5ac56496a3be963da2043d3abf6ce13fbd",
       "repo": "https://github.com/im7manu/7factura-plugins/tree/main/copias"
     },
     {
       "id": "diseno-pdf",
       "nombre": "Diseño de PDF",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "descripcion": "Personaliza los PDF: cinco plantillas, colores, tipografía (también fuentes propias), logo, columnas, textos de cabecera y pie, marca de agua, diseños distintos por tipo de documento o serie, firma manuscrita o sello en imagen y firma digital con certificado (FNMT…).",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/7factura-plugins/releases/download/diseno-pdf-v1.0.0/diseno-pdf-1.0.0.tar.gz",
-      "sha256": "02af9f15c124561887000f9f6384a3de24e9d011bd7da79267372a4d98ec0c91",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/diseno-pdf-v1.1.0/diseno-pdf-1.1.0.tar.gz",
+      "sha256": "7c974cb87929a54195200391b3285da5c94eae4c22be328389d38af4ea75020d",
       "repo": "https://github.com/im7manu/7factura-plugins/tree/main/diseno-pdf"
+    },
+    {
+      "id": "estado-cuenta",
+      "nombre": "Estado de cuenta de cliente",
+      "version": "1.0.0",
+      "descripcion": "Informe de la relación con un cliente en un periodo: facturas, rectificativas, cobros (también parciales), vencimientos con días de retraso y saldo pendiente. En PDF con tus datos y logotipo, o en CSV, y se puede enviar por correo al cliente.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/estado-cuenta-v1.0.0/estado-cuenta-1.0.0.tar.gz",
+      "sha256": "4f84d732594754bb448eca083610991914f16dafad1107c61b3ad13490475b5c",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/estado-cuenta"
     },
     {
       "id": "gestor-deca",
       "nombre": "7DeCA",
-      "version": "1.0.0",
-      "descripcion": "Conecta 7Factura con 7DeCA: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje o por tonelada, recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
+      "version": "1.1.0",
+      "descripcion": "Conecta 7Factura con 7DeCA: factura los envíos (DeCA y eCMR) en una factura en borrador, por viaje, por tonelada o por kilómetro (con km editables antes de facturar), recuerda cuáles están ya facturados y copia clientes, vehículos y conductores.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/7factura-plugins/releases/download/gestor-deca-v1.0.0/gestor-deca-1.0.0.tar.gz",
-      "sha256": "41d064496cd1c4e64dd4d7b84910a95a6e8206e952d5760bd839a37f7556c86b",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/gestor-deca-v1.1.0/gestor-deca-1.1.0.tar.gz",
+      "sha256": "a8393fd5a6b5378f94b8ba9a7ca6af7eddc426b233fed83bcd858fbd2f776892",
       "repo": "https://github.com/im7manu/7factura-plugins/tree/main/gestor-deca"
+    },
+    {
+      "id": "horas",
+      "nombre": "Registro de horas",
+      "version": "1.0.0",
+      "descripcion": "Registra horas de trabajo por cliente y proyecto, con cronómetro o a mano, tarifa general, por cliente o por proyecto y redondeo. Las horas facturables pendientes se convierten en una factura en borrador y quedan marcadas para no facturarlas dos veces. Informes por cliente, proyecto y periodo.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/horas-v1.0.0/horas-1.0.0.tar.gz",
+      "sha256": "9a08a2de5897cd9ddf912e821ee037d20736dd269cf04a17ab03263cc3ddeeaa",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/horas"
+    },
+    {
+      "id": "periodicas",
+      "nombre": "Facturación periódica",
+      "version": "1.0.0",
+      "descripcion": "Plantillas de facturas que se repiten (cuotas, mantenimientos, alquileres, licencias…): semanal, mensual, trimestral, semestral o anual. Cuando llega la fecha prepara la factura en borrador para revisarla y emitirla; nunca la emite sola ni repite un periodo.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/periodicas-v1.0.0/periodicas-1.0.0.tar.gz",
+      "sha256": "e084e5897303a3bba88fe41753a9b372341aa2b3ccaa9813c1acba618f192c24",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/periodicas"
+    },
+    {
+      "id": "qr-pago",
+      "nombre": "QR de pago por transferencia",
+      "version": "1.0.0",
+      "descripcion": "Añade al PDF de las facturas un código QR de transferencia SEPA (formato EPC) con el IBAN, el beneficiario, el importe pendiente y la referencia, para que el cliente prepare el pago desde su app bancaria. Solo prepara la transferencia: no cobra ni marca nada como pagado.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/qr-pago-v1.0.0/qr-pago-1.0.0.tar.gz",
+      "sha256": "fd4fe371ea2c479530a5eca7e14d1f27d9a64c62a4748374d9f344f03f5505cd",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/qr-pago"
+    },
+    {
+      "id": "recordatorios",
+      "nombre": "Recordatorios de cobro",
+      "version": "1.0.0",
+      "descripcion": "Envía a los clientes recordatorios por correo de las facturas que van a vencer, vencen hoy o ya han vencido, con la cuenta de correo conectada en 7Factura. Fases configurables, sin repetir avisos, modo de prueba, exclusiones, pausas por cliente y registro de todo lo enviado.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/recordatorios-v1.0.0/recordatorios-1.0.0.tar.gz",
+      "sha256": "df0a184b77c4d5c0158654c3378d75e4e7860ec5eb5d49e647108f0c2ed0ee38",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/recordatorios"
+    },
+    {
+      "id": "rutas",
+      "nombre": "7Ruta",
+      "version": "1.0.0",
+      "descripcion": "Mapas y rutas en 7Factura: calcula los km entre lugares con vista previa (camión o coche, evitando peajes, autopistas o ferris) y permite facturar por kilómetro los envíos de 7DeCA. OpenRouteService por defecto o Google Maps con tu clave.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/rutas-v1.0.0/rutas-1.0.0.tar.gz",
+      "sha256": "cd5be7084eb51ccd64ad505f464b9149776c3ee695889c6f6d88532c4af8645b",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/rutas"
+    },
+    {
+      "id": "stock",
+      "nombre": "Control de stock",
+      "version": "1.0.0",
+      "descripcion": "Existencias de los productos que elijas: cantidad inicial, salidas al emitir albaranes o facturas, entradas al confirmar la mercancía recibida de proveedores, ajustes con motivo, stock mínimo con aviso y historial de movimientos. Almacén único.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/stock-v1.0.0/stock-1.0.0.tar.gz",
+      "sha256": "e05c56740a204d938d01f29b646e98a559311d260e6dca678ee2b81d8a1b4a26",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/stock"
     },
     {
       "id": "temas",
       "nombre": "Temas",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "descripcion": "Cambia el aspecto de toda la aplicación (colores, tipografía, forma, transparencias, menú e iconos) y personaliza la pantalla de inicio de sesión con fotos de tu empresa. Incluye Metro, 7DeCA, Frutiger Aero, Windows clásico, Alto contraste y Nórdico, y admite temas propios.",
       "autor": "im7manu",
-      "url": "https://github.com/im7manu/7factura-plugins/releases/download/temas-v1.0.0/temas-1.0.0.tar.gz",
-      "sha256": "61b28b7540bfc3fcb62d40b5132aa76b8a1d0e3f80e45320d94ffed073252042",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/temas-v1.0.1/temas-1.0.1.tar.gz",
+      "sha256": "8a513339fb4cebeaa7fa86b093a83f275ef3dbe5e49ab80678a1e23bc404091b",
       "repo": "https://github.com/im7manu/7factura-plugins/tree/main/temas"
+    },
+    {
+      "id": "whatsapp",
+      "nombre": "WhatsApp Web",
+      "version": "1.0.0",
+      "descripcion": "Envía por WhatsApp el PDF de facturas, presupuestos, proformas, pedidos, albaranes y rectificativas desde el número de la empresa, vinculado como WhatsApp Web con un código QR. Plantillas por tipo de documento e historial. Sin la API de pago de WhatsApp Business.",
+      "autor": "im7manu",
+      "url": "https://github.com/im7manu/7factura-plugins/releases/download/whatsapp-v1.0.0/whatsapp-1.0.0.tar.gz",
+      "sha256": "ff4e20f06db1ca79bad7e62cf30a2c8ae98cf0a3061a6c907b4d27993de5dfd1",
+      "repo": "https://github.com/im7manu/7factura-plugins/tree/main/whatsapp"
     }
   ]
 }
