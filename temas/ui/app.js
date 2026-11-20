@@ -13,7 +13,7 @@
       : '<div class="lateral" style="background:' + c.surface + alfa + ';border-right:1px solid ' + (c.stroke || '#ddd') + '"><i style="background:' + c['brand-fg'] + ';opacity:1"></i><i style="background:' + c.fg + '"></i><i style="background:' + c.fg + '"></i><i style="background:' + c.fg + '"></i></div>';
     var tiles = ['blue', 'teal', 'purple'].map(function (k) { return '<b style="background:' + (m[k] || c.brand) + ';border-radius:' + r + '"></b>'; }).join('');
     return '<div class="mini' + (t.menu === 'superior' ? ' arriba' : '') + '" style="background:' + fondo + c.canvas + ';font-family:' + F.escapar(t.fuente || 'inherit') + '">' +
-      '<div class="barra" style="background:' + c.suite + ';color:' + (c['suite-fg'] || '#fff') + '">Facturador</div>' +
+      '<div class="barra" style="background:' + c.suite + ';color:' + (c['suite-fg'] || '#fff') + '">7Factura</div>' +
       '<div class="cuerpo">' + menu + '<div class="zona">' + tiles +
       '<span class="tarjeta" style="background:' + c.surface + alfa + ';border-radius:' + r + ';box-shadow:' + (t.sombra === 'ninguna' ? 'none' : '0 1px 3px rgba(0,0,0,.18)') + (t.relieve ? ';border:2px outset #fff' : '') + '"></span>' +
       '</div></div></div>';

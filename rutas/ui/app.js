@@ -1,4 +1,4 @@
-// Plugin «Rutas y mapas» — página dentro de Facturador.
+// Plugin «7Ruta» — página dentro de 7Factura.
 (function () {
   const { api, aviso, escapar: e } = window.Facturador;
   const $ = (id) => document.getElementById(id);

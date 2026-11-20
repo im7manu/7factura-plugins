@@ -1,6 +1,6 @@
-// Plugin «Gestor DeCA y eCMR» — interfaz.
-// Crea las facturas y los clientes con la API normal de Facturador (mismas validaciones que la aplicación)
-// y usa la API del plugin solo para hablar con Gestor DeCA y recordar qué envíos están facturados.
+// Plugin «7DeCA» — interfaz.
+// Crea las facturas y los clientes con la API normal de 7Factura (mismas validaciones que la aplicación)
+// y usa la API del plugin solo para hablar con 7DeCA y recordar qué envíos están facturados.
 (function () {
   const { api, aviso, escapar: e } = window.Facturador;
   const $ = (id) => document.getElementById(id);
@@ -43,7 +43,7 @@
       ? `Conectado${cfg.empresa?.nombre ? ` con <strong>${e(cfg.empresa.nombre)}</strong>` : ''}. Comprobado el ${new Date(cfg.comprobado).toLocaleString('es-ES')}.`
       : 'Sin conectar.';
     $('sin-conexion').hidden = !!cfg.configurado;
-    $('sub').textContent = cfg.empresa?.nombre ? `Conectado con el Gestor DeCA de ${cfg.empresa.nombre}.` : 'Factura los envíos de Gestor DeCA y copia sus clientes, vehículos y conductores.';
+    $('sub').textContent = cfg.empresa?.nombre ? `Conectado con el 7DeCA de ${cfg.empresa.nombre}.` : 'Factura los envíos de 7DeCA y copia sus clientes, vehículos y conductores.';
   }
   $('guardar').addEventListener('click', async () => {
     $('guardar').disabled = true;
@@ -52,12 +52,12 @@
       $('token').value = '';
       cfg = await api(`${P}/config`);
       pintarConexion();
-      aviso(`Conectado con Gestor DeCA ${r.version || ''}`);
+      aviso(`Conectado con 7DeCA ${r.version || ''}`);
       buscar();
     } catch (x) { aviso(x.message, 'error'); } finally { $('guardar').disabled = yo?.rol !== 'admin'; }
   });
   $('desconectar').addEventListener('click', async () => {
-    if (!confirm('¿Desconectar de Gestor DeCA? Los envíos ya facturados se seguirán recordando.')) return;
+    if (!confirm('¿Desconectar de 7DeCA? Los envíos ya facturados se seguirán recordando.')) return;
     await api(`${P}/config`, { method: 'DELETE' });
     cfg = await api(`${P}/config`); pintarConexion(); $('grupos').innerHTML = '';
   });
@@ -179,7 +179,7 @@
       if (r.km != null && (recalcular || !inp.dataset.editado)) { inp.value = r.km; delete inp.dataset.editado; }
       inp.dataset.calculado = r.km ?? '';
       nota.className = `kmnota${r.error ? ' error' : ''}`;
-      nota.textContent = r.error || [r.detalle, r.fuente === 'deca' ? 'de Gestor DeCA' : r.fuente === 'facturador' ? 'calculado en Facturador' : '', r.aviso].filter(Boolean).join(' · ');
+      nota.textContent = r.error || [r.detalle, r.fuente === 'deca' ? 'de 7DeCA' : r.fuente === 'facturador' ? 'calculado en 7Factura' : '', r.aviso].filter(Boolean).join(' · ');
       inp.oninput = () => { inp.dataset.editado = '1'; nota.textContent = inp.dataset.calculado ? `Corregido a mano (calculado: ${inp.dataset.calculado} km)` : 'Puesto a mano'; nota.className = 'kmnota'; };
     }
   }
@@ -196,17 +196,17 @@
       if (hallado) return hallado;
     }
     const nuevo = await crearTercero('/api/clientes', { nombre: c.nombre || 'Cliente', nif, direccion: c.direccion || '' });
-    aviso(`Cliente «${nuevo.nombre}» añadido a Facturador`);
+    aviso(`Cliente «${nuevo.nombre}» añadido a 7Factura`);
     return nuevo;
   }
 
-  // Gestor DeCA no valida los NIF y Facturador sí: si el NIF no es válido, se crea sin él, se guarda en las
+  // 7DeCA no valida los NIF y 7Factura sí: si el NIF no es válido, se crea sin él, se guarda en las
   // notas y se avisa para corregirlo (una factura completa necesita el NIF correcto del cliente).
   async function crearTercero(ruta, datos) {
     try { return await api(ruta, { method: 'POST', body: datos }); }
     catch (x) {
       if (!datos.nif || !/NIF/i.test(x.message)) throw x;
-      const r = await api(ruta, { method: 'POST', body: { ...datos, nif: '', notas: `NIF en Gestor DeCA: ${datos.nif} (no es válido; revísalo).` } });
+      const r = await api(ruta, { method: 'POST', body: { ...datos, nif: '', notas: `NIF en 7DeCA: ${datos.nif} (no es válido; revísalo).` } });
       aviso(`El NIF ${datos.nif} de «${datos.nombre}» no es válido: se ha añadido sin NIF. Corrígelo en la ficha del cliente.`, 'error');
       return r;
     }
@@ -258,9 +258,9 @@
     f.base.value = kmCfg.base; f.precio_km.value = kmCfg.precio_km || ''; f.minimo.value = kmCfg.minimo || ''; f.redondeo.value = kmCfg.redondeo;
     f.preferir_deca.checked = kmCfg.preferir_deca;
     const r = kmCfg.rutas;
-    $('km-rutas').innerHTML = r.configurado ? '✔ Plugin «Rutas y mapas» de Facturador configurado: se pueden calcular los km que falten, la vuelta y los km desde la base.'
-      : r.instalado ? '⚠ El plugin «Rutas y mapas» está instalado pero sin configurar: <a href="#" data-ir="/p/rutas">configúralo</a> para calcular km en Facturador.'
-      : 'ℹ Sin el plugin «Rutas y mapas» en Facturador solo se usan los km calculados en Gestor DeCA (la vuelta se estima igual que la ida). Puedes instalarlo desde Plugins.';
+    $('km-rutas').innerHTML = r.configurado ? '✔ Plugin «7Ruta» de 7Factura configurado: se pueden calcular los km que falten, la vuelta y los km desde la base.'
+      : r.instalado ? '⚠ El plugin «7Ruta» está instalado pero sin configurar: <a href="#" data-ir="/p/rutas">configúralo</a> para calcular km en 7Factura.'
+      : 'ℹ Sin el plugin «7Ruta» en 7Factura solo se usan los km calculados en 7DeCA (la vuelta se estima igual que la ida). Puedes instalarlo desde Plugins.';
     $('km-rutas').querySelector('[data-ir]')?.addEventListener('click', (ev) => { ev.preventDefault(); abrir(ev.target.dataset.ir); });
     let precios = [...kmCfg.precios_cliente];
     const filas = () => {
@@ -307,7 +307,7 @@
       };
       const n = Object.values(diferencias).reduce((s, l) => s + l.length, 0);
       const fila = (t, l, f) => `<li><strong>${t}</strong>: ${l.length ? l.map(f).map(e).join(', ') : 'ninguno'}</li>`;
-      $('resumen-sinc').innerHTML = `<p>${n ? `Faltan <strong>${n}</strong> registros en Facturador:` : 'Facturador ya tiene todos los datos de Gestor DeCA.'}</p><ul>
+      $('resumen-sinc').innerHTML = `<p>${n ? `Faltan <strong>${n}</strong> registros en 7Factura:` : '7Factura ya tiene todos los datos de 7DeCA.'}</p><ul>
         ${fila('Clientes', diferencias.clientes, (x) => x.nombre)}${fila('Proveedores (transportistas)', diferencias.proveedores, (x) => x.nombre)}
         ${fila('Vehículos', diferencias.vehiculos, (x) => x.matricula)}${fila('Conductores', diferencias.conductores, (x) => x.nombre)}</ul>`;
       $('sincronizar').disabled = !n;

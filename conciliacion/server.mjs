@@ -1,4 +1,4 @@
-// Plugin «Conciliación bancaria»: importa extractos CSV y relaciona cada movimiento con recibos de Facturador.
+// Plugin «Conciliación bancaria»: importa extractos CSV y relaciona cada movimiento con recibos de 7Factura.
 // - No se conecta al banco ni pide claves: el usuario descarga el CSV de su banca online.
 // - Detecta importaciones repetidas (huella de cada movimiento) y conserva el movimiento original.
 // - Nunca registra cobros o pagos sin que el usuario confirme la coincidencia; permite parciales y repartos.

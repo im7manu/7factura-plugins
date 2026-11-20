@@ -2,7 +2,7 @@
   "id": "nordico",
   "nombre": "Nórdico",
   "descripcion": "Tranquilo y luminoso: verdes de bosque, mucho aire, bordes redondeados y el menú arriba en lugar de al lado.",
-  "autor": "Facturador",
+  "autor": "7Factura",
   "claro": { "canvas": "#F4F6F5", "surface": "#FFFFFF", "subtle": "#EDF1EF", "stroke": "#DCE3E0", "fg": "#1F2A27", "muted": "#5E6B67",
     "brand": "#2F6F62", "brand-hover": "#255A4F", "brand-fg": "#2F6F62", "brand-soft": "#E3F0EC", "suite": "#FFFFFF", "suite-fg": "#1F2A27",
     "danger": "#B3404A", "success": "#2F7D4F", "warning": "#A86B12" },

@@ -1,4 +1,4 @@
-// Utilidades para probar los plugins contra un servidor real de Facturador (../facturador).
+// Utilidades para probar los plugins contra un servidor real de 7Factura (../facturador).
 import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';

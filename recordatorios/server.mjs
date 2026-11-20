@@ -1,5 +1,5 @@
 // Plugin «Recordatorios de cobro»: envía avisos por correo a los clientes según el vencimiento de sus recibos.
-// - Usa la cuenta de correo ya conectada en Facturador por el usuario que se elija (Ajustes › Correo).
+// - Usa la cuenta de correo ya conectada en 7Factura por el usuario que se elija (Ajustes › Correo).
 // - Por defecto está en modo de prueba: calcula y previsualiza, pero no envía hasta que un administrador lo activa.
 // - Nunca envía dos veces la misma fase del mismo recibo, ni avisa de recibos cobrados, rectificados o sin correo válido.
 // - No añade recargos, intereses ni amenazas: solo informa del importe pendiente.

@@ -1,13 +1,13 @@
 {
   "id": "rutas",
-  "nombre": "Rutas y mapas",
+  "nombre": "7Ruta",
   "version": "1.0.0",
-  "descripcion": "Mapas y rutas en Facturador: calcula los km entre lugares con vista previa (camión o coche, evitando peajes, autopistas o ferris) y permite facturar por kilómetro los envíos de Gestor DeCA. OpenRouteService por defecto o Google Maps con tu clave.",
+  "descripcion": "Mapas y rutas en 7Factura: calcula los km entre lugares con vista previa (camión o coche, evitando peajes, autopistas o ferris) y permite facturar por kilómetro los envíos de 7DeCA. OpenRouteService por defecto o Google Maps con tu clave.",
   "autor": "im7manu",
   "licencia": "MIT",
   "app_min": "1.3.0",
   "server": "server.mjs",
-  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "Rutas y mapas" }] },
+  "ui": { "entrada": "ui/index.html", "menu": [{ "titulo": "7Ruta" }] },
   "csp": {
     "img": ["https://tile.openstreetmap.org", "https://*.googleapis.com", "https://*.gstatic.com", "https://*.google.com"],
     "script": ["https://maps.googleapis.com", "https://maps.gstatic.com"],

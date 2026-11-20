@@ -49,7 +49,7 @@ export function dibujar(p, d, lib, extra) {
   const T = Math.max(7, Math.min(12, Number(d.tamano) || 9)) - (compacta ? 1 : 0);
 
   const pdf = new PDFDocument({ size: 'A4', margin: 48, bufferPages: true, info: {
-    Title: `${TITULOS[doc.tipo] || 'DOCUMENTO'} ${doc.codigo || 'BORRADOR'}`, Author: empresa.razon_social || '', Creator: 'Facturador (plugin diseno-pdf)',
+    Title: `${TITULOS[doc.tipo] || 'DOCUMENTO'} ${doc.codigo || 'BORRADOR'}`, Author: empresa.razon_social || '', Creator: '7Factura (plugin diseno-pdf)',
   } });
 
   // Tipografía: estándar del PDF o archivo TTF/OTF subido

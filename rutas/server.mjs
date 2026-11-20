@@ -1,10 +1,10 @@
-// Plugin «Rutas y mapas» para Facturador.
+// Plugin «7Ruta» para 7Factura.
 //
 // - Configura el proveedor de mapas: OpenRouteService por defecto (clave gratuita) o Google Maps con la clave del
 //   administrador. Las claves se guardan cifradas y nunca llegan al navegador (salvo la clave de navegador de Google).
 // - Calculadora de rutas con vista previa en el mapa (camión o coche, evitando peajes, autopistas o ferris).
 // - Sugiere direcciones mientras se escribe en clientes, proveedores y datos de la empresa (punto 'direcciones').
-// - Ofrece el punto de extensión 'rutas' para otros plugins (p. ej. «Gestor DeCA» para facturar por kilómetro):
+// - Ofrece el punto de extensión 'rutas' para otros plugins (p. ej. «7DeCA» para facturar por kilómetro):
 //     calcular(textos, opciones) → { km, minutos, linea, puntos, avisos, ... }
 //     configurado() → boolean
 import { crearRutas, configLimpia, configPublica, ErrorMapa, leerCoordenadas } from './lib/proveedores.mjs';

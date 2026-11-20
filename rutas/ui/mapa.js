@@ -1,4 +1,4 @@
-// Mapa de los plugins «Rutas» (compartido por Gestor DeCA y Facturador: si lo cambias, cópialo en los dos).
+// Mapa de los plugins «Rutas» (compartido por 7DeCA y 7Factura: si lo cambias, cópialo en los dos).
 // window.RutasMapa.crear(elemento, { proveedor, clave_navegador }) → { puntos(lista), linea(coords), alClic(fn), ajustar(), destruir() }
 //   - OpenRouteService: Leaflet con teselas de OpenStreetMap (incluido en el plugin, sin CDN).
 //   - Google: Google Maps JavaScript API con la clave de navegador (las rutas de Google deben verse sobre un mapa de Google).

@@ -1,11 +1,11 @@
-// Plugin «Gestor DeCA y eCMR»: conecta Facturador con una instalación de Gestor DeCA y eCMR mediante su API de
-// integración de solo lectura (token creado en Gestor DeCA › Usuarios › Integraciones).
+// Plugin «7DeCA»: conecta 7Factura con una instalación de 7DeCA mediante su API de
+// integración de solo lectura (token creado en 7DeCA › Usuarios › Integraciones).
 //
 // - El token se guarda cifrado con la clave de la instalación y nunca se envía al navegador.
-// - Las peticiones a Gestor DeCA las hace el servidor (sin problemas de CORS ni exponer el token).
+// - Las peticiones a 7DeCA las hace el servidor (sin problemas de CORS ni exponer el token).
 // - Recuerda qué envíos se han incluido en qué factura (tabla plugin_gestor_deca_vinculos).
-// - Cobro por kilómetro: usa los km que guarda el plugin «Rutas y mapas» de Gestor DeCA (campo «ruta» de cada envío)
-//   o los calcula con el plugin «Rutas y mapas» de Facturador. Cómo se cuentan los km se elige en la configuración.
+// - Cobro por kilómetro: usa los km que guarda el plugin «7Ruta» de 7DeCA (campo «ruta» de cada envío)
+//   o los calcula con el plugin «7Ruta» de 7Factura. Cómo se cuentan los km se elige en la configuración.
 
 const AJUSTE = 'plugin_gestor_deca';
 const AJUSTE_KM = 'plugin_gestor_deca_km';
@@ -31,17 +31,17 @@ export function register(ctx) {
   const token = () => { const c = config(); try { return c.token ? ctx.descifrar(c.token) : ''; } catch { return ''; } };
 
   async function deca(ruta, cfg = { url: config().url, token: token() }) {
-    if (!cfg.url || !cfg.token) { const e = new Error('Configura primero la conexión con Gestor DeCA (pestaña Conexión).'); e.status = 400; throw e; }
+    if (!cfg.url || !cfg.token) { const e = new Error('Configura primero la conexión con 7DeCA (pestaña Conexión).'); e.status = 400; throw e; }
     let r;
     try {
       r = await fetch(`${cfg.url}/api/integracion/v1${ruta}`, { headers: { Authorization: `Bearer ${cfg.token}`, Accept: 'application/json' }, signal: AbortSignal.timeout(15_000) });
     } catch (e) {
-      const err = new Error(e.name === 'TimeoutError' ? 'Gestor DeCA no responde (tiempo agotado).' : `No se pudo conectar con Gestor DeCA: ${e.cause?.code || e.message}`);
+      const err = new Error(e.name === 'TimeoutError' ? '7DeCA no responde (tiempo agotado).' : `No se pudo conectar con 7DeCA: ${e.cause?.code || e.message}`);
       err.status = 502; throw err;
     }
     const datos = await r.json().catch(() => ({}));
     if (!r.ok) {
-      const err = new Error(r.status === 401 ? 'Gestor DeCA ha rechazado el token (¿revocado o mal copiado?).' : (datos.error || `Gestor DeCA respondió ${r.status}`));
+      const err = new Error(r.status === 401 ? '7DeCA ha rechazado el token (¿revocado o mal copiado?).' : (datos.error || `7DeCA respondió ${r.status}`));
       err.status = 502; throw err;
     }
     return datos;
@@ -60,9 +60,9 @@ export function register(ctx) {
     const url = limpiarUrl(req.body?.url);
     const nuevo = String(req.body?.token || '').trim();
     if (!urlValida(url)) return res.status(400).json({ error: 'La dirección no es válida (p. ej. https://gestor.tuempresa.com).' });
-    if (nuevo && !/^deca_[A-Za-z0-9_-]{20,100}$/.test(nuevo)) return res.status(400).json({ error: 'El token no tiene el formato de Gestor DeCA (empieza por «deca_»).' });
+    if (nuevo && !/^deca_[A-Za-z0-9_-]{20,100}$/.test(nuevo)) return res.status(400).json({ error: 'El token no tiene el formato de 7DeCA (empieza por «deca_»).' });
     const tk = nuevo || token();
-    if (!tk) return res.status(400).json({ error: 'Pega el token creado en Gestor DeCA › Usuarios › Integraciones.' });
+    if (!tk) return res.status(400).json({ error: 'Pega el token creado en 7DeCA › Usuarios › Integraciones.' });
     // Se comprueba la conexión antes de guardar
     const estado = await deca('/estado', { url, token: tk });
     ctx.setAjuste(AJUSTE, { url, token: ctx.cifrar(tk), comprobado: new Date().toISOString(), empresa: estado.empresa || null, version: estado.version });
@@ -155,18 +155,18 @@ export function register(ctx) {
   /** Km a facturar de un envío según la configuración. Devuelve { km, detalle, fuente, aviso } o { error }. */
   async function kmEnvio(e, c) {
     const R = extRutas(), listo = rutasListas();
-    // Si Gestor DeCA manda las coordenadas de los puntos, se usan en lugar de los nombres (que solo conoce Gestor DeCA)
+    // Si 7DeCA manda las coordenadas de los puntos, se usan en lugar de los nombres (que solo conoce 7DeCA)
     const pts = Array.isArray(e.puntos) ? e.puntos : [];
     const txt = (t, i) => { const p = pts[i]; return p && Number.isFinite(p.lat) && Number.isFinite(p.lon) ? `${p.lat}, ${p.lon}` : String(t || '').trim(); };
     const destinos = (Array.isArray(e.destinos) ? e.destinos : []).map((x, i) => txt(x, i + 1)).filter(Boolean).slice(0, 20);
     const origen = txt(e.origen, 0);
     const deca = Number.isFinite(Number(e.ruta?.km)) && e.ruta?.km != null ? Number(e.ruta.km) : null;
-    const sinRutas = 'Instala y configura el plugin «Rutas y mapas» en Facturador, o calcula la ruta del envío en Gestor DeCA.';
+    const sinRutas = 'Instala y configura el plugin «7Ruta» en 7Factura, o calcula la ruta del envío en 7DeCA.';
     const avisos = [];
-    if (e.ruta?.revisar) avisos.push('En Gestor DeCA cambiaron los lugares después de corregir los km: revísalos.');
+    if (e.ruta?.revisar) avisos.push('En 7DeCA cambiaron los lugares después de corregir los km: revísalos.');
     let ida = null, fuente = null;
     if (c.cuenta !== 'base') {
-      if (deca != null && (c.preferir_deca || !listo)) { ida = deca; fuente = 'deca'; if (e.ruta.manual) avisos.push('Km corregidos a mano en Gestor DeCA.'); }
+      if (deca != null && (c.preferir_deca || !listo)) { ida = deca; fuente = 'deca'; if (e.ruta.manual) avisos.push('Km corregidos a mano en 7DeCA.'); }
       else if (listo && origen && destinos.length) { ida = (await R.calcular([origen, ...destinos])).km; fuente = 'facturador'; }
       else return { error: deca == null ? `El envío no tiene km. ${sinRutas}` : sinRutas };
     }
@@ -176,9 +176,9 @@ export function register(ctx) {
       if (listo && origen && destinos.length) {
         const vuelta = (await R.calcular([destinos[destinos.length - 1], origen])).km;
         km = ida + vuelta; detalle = `ida ${fmt(ida)} + vuelta ${fmt(vuelta)}`;
-      } else { km = ida * 2; detalle = 'ida y vuelta'; avisos.push('Vuelta estimada igual que la ida (sin el plugin «Rutas y mapas» configurado en Facturador).'); }
+      } else { km = ida * 2; detalle = 'ida y vuelta'; avisos.push('Vuelta estimada igual que la ida (sin el plugin «7Ruta» configurado en 7Factura).'); }
     } else {
-      if (!listo) return { error: `Para contar los km desde la base hace falta el plugin «Rutas y mapas» de Facturador configurado.` };
+      if (!listo) return { error: `Para contar los km desde la base hace falta el plugin «7Ruta» de 7Factura configurado.` };
       if (!origen || !destinos.length) return { error: 'El envío no tiene lugar de carga o de descarga.' };
       km = (await R.calcular([c.base, origen, ...destinos, c.base])).km; fuente = 'facturador';
       detalle = 'desde la base, con vuelta';

@@ -2,7 +2,7 @@
 
 Cambia el aspecto de toda la aplicación. Lo elige el administrador y se aplica a todos los usuarios y a la pantalla de inicio de sesión.
 
-Incluye: **Metro** (por defecto), **Gestor DeCA**, **Frutiger Aero**, **Windows clásico**, **Alto contraste** y **Nórdico** (con el menú arriba).
+Incluye: **Metro** (por defecto), **7DeCA**, **Frutiger Aero**, **Windows clásico**, **Alto contraste** y **Nórdico** (con el menú arriba).
 
 ## Formato de un tema
 

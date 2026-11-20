@@ -1,5 +1,5 @@
-// Prueba de extremo a extremo del plugin «Gestor DeCA y eCMR» contra un Gestor DeCA real (../gestor-deca-ecmr)
-// y un Facturador real (../facturador), cada uno con su base de datos temporal.
+// Prueba de extremo a extremo del plugin «7DeCA» contra un 7DeCA real (../gestor-deca-ecmr)
+// y un 7Factura real (../facturador), cada uno con su base de datos temporal.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -18,7 +18,7 @@ async function arrancarDeca(dir, puerto) {
   let log = '';
   srv.stdout.on('data', (d) => { log += d; }); srv.stderr.on('data', (d) => { log += d; });
   await new Promise((ok, ko) => {
-    const t = setTimeout(() => ko(new Error(`Gestor DeCA no arrancó:\n${log}`)), 15_000);
+    const t = setTimeout(() => ko(new Error(`7DeCA no arrancó:\n${log}`)), 15_000);
     srv.stdout.on('data', () => { if (log.includes('activo en')) { clearTimeout(t); ok(); } });
   });
   return srv;
@@ -30,7 +30,7 @@ test('gestor-deca: conexión, envíos, factura y sincronización', { skip: !fs.e
   const deca = await arrancarDeca(path.join(dir, 'deca'), PD);
   const fx = await arrancar(path.join(dir, 'fx'), PF);
   try {
-    // ---- Gestor DeCA: datos y token ----
+    // ---- 7DeCA: datos y token ----
     const { api: d } = cliente(`http://127.0.0.1:${PD}`);
     await d('POST', '/api/setup', { usuario: 'admin', nombre: 'Admin', clave: 'Contrasena123!', claveConfirm: 'Contrasena123!', empresa_nombre: 'Transportes Prueba', empresa_nif: '12345678Z' });
     await d('POST', '/api/empresas', { nombre: 'Áridos del Guadiana S.A.', nif: 'A06111222', direccion: 'Ctra. N-630', cp: '06800', ciudad: 'Mérida', tipo: 'Cliente' });
@@ -42,10 +42,10 @@ test('gestor-deca: conexión, envíos, factura y sincronización', { skip: !fs.e
       const r = await d('POST', '/api/docs', { tipo: 'deca', estado: 'emitido', datos: { contraparte_id: emp.id, destinatario: 'Obra', matricula: '1234 KLM', origen: 'Cantera', destinos: ['Obra Hospital'], f_carga: fecha, mercancia: 'Zahorra', peso, conductor_nombre: 'Juan Pérez', conductor_dni: '12345678Z' } });
       assert.equal(r.status, 200, JSON.stringify(r.body));
     }
-    const token = (await d('POST', '/api/integraciones', { nombre: 'Facturador' })).body.token;
+    const token = (await d('POST', '/api/integraciones', { nombre: '7Factura' })).body.token;
     assert.match(token, /^deca_/);
 
-    // ---- Facturador: plugin ----
+    // ---- 7Factura: plugin ----
     const { api } = cliente(`http://127.0.0.1:${PF}`);
     await preparar(api);
     await instalar(api, 'gestor-deca');

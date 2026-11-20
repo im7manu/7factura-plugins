@@ -158,7 +158,7 @@ export function register(ctx) {
     ctx.hooks.emit('presupuesto.respondido', { documento: d, respuesta: accion, nombre, email });
     if (c.avisar_correo && e.creado_por) {
       const u = db.prepare('SELECT email FROM cuentas_correo WHERE usuario_id = ?').get(e.creado_por);
-      if (u?.email) ctx.app.enviarCorreo(e.creado_por, { para: [u.email], asunto: `Presupuesto ${d.codigo} ${accion}`, texto: `${d.cliente?.nombre || 'El cliente'} ha ${accion === 'aceptado' ? 'ACEPTADO' : 'RECHAZADO'} el presupuesto ${d.codigo}${nombre ? ` (respondió ${nombre}${email ? `, ${email}` : ''})` : ''}.${b.comentario ? `\n\nComentario:\n${b.comentario}` : ''}\n\nSi lo ha aceptado, puedes convertirlo en pedido o factura desde Facturador.` }).catch((x) => console.error('[aceptacion] aviso por correo:', x.message));
+      if (u?.email) ctx.app.enviarCorreo(e.creado_por, { para: [u.email], asunto: `Presupuesto ${d.codigo} ${accion}`, texto: `${d.cliente?.nombre || 'El cliente'} ha ${accion === 'aceptado' ? 'ACEPTADO' : 'RECHAZADO'} el presupuesto ${d.codigo}${nombre ? ` (respondió ${nombre}${email ? `, ${email}` : ''})` : ''}.${b.comentario ? `\n\nComentario:\n${b.comentario}` : ''}\n\nSi lo ha aceptado, puedes convertirlo en pedido o factura desde 7Factura.` }).catch((x) => console.error('[aceptacion] aviso por correo:', x.message));
     }
     res.json({ ok: true, estado: accion });
   }));

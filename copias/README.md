@@ -1,6 +1,6 @@
 # Copias de seguridad
 
-Copia de todos los datos de Facturador: automática cada semana y cuando quieras, descargable en ZIP y restaurable.
+Copia de todos los datos de 7Factura: automática cada semana y cuando quieras, descargable en ZIP y restaurable.
 
 ## Qué hace
 

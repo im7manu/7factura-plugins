@@ -1,6 +1,6 @@
-// Plugin «WhatsApp Web» para Facturador: envía el PDF real de un documento al WhatsApp del cliente o proveedor desde
+// Plugin «WhatsApp Web» para 7Factura: envía el PDF real de un documento al WhatsApp del cliente o proveedor desde
 // el número de la empresa vinculado como WhatsApp Web. Sesión propia en la carpeta del plugin, independiente del
-// WhatsApp de recuperación de contraseñas de Facturador.
+// WhatsApp de recuperación de contraseñas de 7Factura.
 import fs from 'node:fs';
 import { crearWhatsApp, normalizarTelefono, rellenar } from './lib/whatsapp.mjs';
 
@@ -21,7 +21,7 @@ export function register(ctx) {
     texto TEXT, archivo TEXT, usuario TEXT, fecha TEXT NOT NULL DEFAULT (datetime('now')), estado TEXT NOT NULL, error TEXT, mensaje_id TEXT
   ); CREATE INDEX IF NOT EXISTS idx_pwa_doc ON plugin_whatsapp_envios(documento_id)`);
 
-  const wa = crearWhatsApp({ carpeta: ctx.dataDir, nombreDispositivo: 'Facturador' });
+  const wa = crearWhatsApp({ carpeta: ctx.dataDir, nombreDispositivo: '7Factura' });
   wa.arrancar();
   ctx.alParar(() => wa.parar());
 

@@ -27,6 +27,6 @@ Se pueden usar las dos a la vez.
 
 ## Cómo funciona
 
-Usa los puntos de extensión `pdf.generar` (dibuja el documento) y `pdf.postprocesar` (aplica la firma digital). Si se desactiva el plugin, se vuelve al diseño estándar de Facturador.
+Usa los puntos de extensión `pdf.generar` (dibuja el documento) y `pdf.postprocesar` (aplica la firma digital). Si se desactiva el plugin, se vuelve al diseño estándar de 7Factura.
 
 Dependencias incluidas en el paquete: `node-forge` (lectura del certificado) y `@signpdf` (firma PAdES).

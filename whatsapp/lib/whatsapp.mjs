@@ -1,4 +1,4 @@
-// Conexión de WhatsApp Web para enviar documentos (compartido por los plugins «WhatsApp» de Gestor DeCA y Facturador:
+// Conexión de WhatsApp Web para enviar documentos (compartido por los plugins «WhatsApp» de 7DeCA y 7Factura:
 // si lo cambias, cópialo en los dos repositorios).
 //
 // - Usa Baileys (protocolo de WhatsApp Web, sin navegador). No es la API oficial de Meta: puede dejar de funcionar si

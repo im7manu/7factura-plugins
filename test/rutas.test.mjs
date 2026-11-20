@@ -1,4 +1,4 @@
-// Plugin «Rutas y mapas» y cobro por km de «Gestor DeCA», contra un Facturador real y un OpenRouteService simulado.
+// Plugin «7Ruta» y cobro por km de «7DeCA», contra un 7Factura real y un OpenRouteService simulado.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';

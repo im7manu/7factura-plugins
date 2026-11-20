@@ -1,5 +1,5 @@
 // Plugins de la tanda 2 (WhatsApp, recordatorios, conciliación, periódicas, estado de cuenta, QR de pago, aceptación,
-// stock y horas) contra un Facturador real con base de datos temporal.
+// stock y horas) contra un 7Factura real con base de datos temporal.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { arrancar, cliente, instalar, preparar } from './ayuda.mjs';
 
-test('plugins nuevos de Facturador', async () => {
+test('plugins nuevos de 7Factura', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'fx-nuevos-'));
   const PF = 9331, BASE = `http://127.0.0.1:${PF}`;
   const fx = await arrancar(dir, PF);

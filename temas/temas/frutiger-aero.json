@@ -2,7 +2,7 @@
   "id": "frutiger-aero",
   "nombre": "Frutiger Aero",
   "descripcion": "Cielo, agua y cristal: superficies translúcidas con desenfoque, brillos y bordes redondeados, al estilo de los 2000.",
-  "autor": "Facturador",
+  "autor": "7Factura",
   "modo": "claro",
   "claro": { "canvas": "#E6F5FF", "surface": "#FFFFFF", "subtle": "#E3F3FC", "stroke": "#B9DCF2", "fg": "#12324A", "muted": "#47657A",
     "brand": "#1593D6", "brand-hover": "#0B7DBA", "brand-fg": "#0A6AA3", "brand-soft": "#DDF2FF", "suite": "#1C8FD0", "suite-fg": "#FFFFFF",

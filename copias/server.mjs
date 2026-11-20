@@ -80,9 +80,9 @@ export function register(ctx) {
     const entradas = leerZip(zipBuf);
     const meta = entradas.find((e) => e.nombre === 'copia.json');
     const base = entradas.find((e) => e.nombre === 'facturador.db');
-    if (!meta || !base) throw Object.assign(new Error('El ZIP no es una copia de seguridad de Facturador'), { status: 400 });
+    if (!meta || !base) throw Object.assign(new Error('El ZIP no es una copia de seguridad de 7Factura'), { status: 400 });
     const info = JSON.parse(meta.datos.toString('utf8'));
-    if (info.aplicacion !== 'facturador') throw Object.assign(new Error('El ZIP no es una copia de seguridad de Facturador'), { status: 400 });
+    if (info.aplicacion !== 'facturador') throw Object.assign(new Error('El ZIP no es una copia de seguridad de 7Factura'), { status: 400 });
     if (base.datos.subarray(0, 16).toString('latin1') !== 'SQLite format 3\u0000') throw Object.assign(new Error('La base de datos de la copia está dañada'), { status: 400 });
     const destino = path.join(ctx.dataRoot, 'restaurar');
     fs.rmSync(destino, { recursive: true, force: true });

@@ -1,6 +1,6 @@
 # Registro de horas
 
-Plugin para Facturador 1.3.0 o posterior.
+Plugin para 7Factura 1.3.0 o posterior.
 
 ## Qué hace
 

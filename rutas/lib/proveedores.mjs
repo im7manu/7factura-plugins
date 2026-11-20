@@ -1,4 +1,4 @@
-// Proveedores de mapas para los plugins «Rutas» (Gestor DeCA y Facturador comparten este archivo: si lo cambias,
+// Proveedores de mapas para los plugins «Rutas» (7DeCA y 7Factura comparten este archivo: si lo cambias,
 // cópialo en los dos y pasa las pruebas de ambos repositorios).
 //
 //   - OpenRouteService (por defecto, gratis con registro): rutas en camión (driving-hgv) o coche y búsqueda de
