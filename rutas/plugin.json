@@ -1,7 +1,7 @@
 {
   "id": "rutas",
   "nombre": "7Ruta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "descripcion": "Mapas y rutas en 7Factura: calcula los km entre lugares con vista previa (camión o coche, evitando peajes, autopistas o ferris) y permite facturar por kilómetro los envíos de 7DeCA. OpenRouteService por defecto o Google Maps con tu clave.",
   "autor": "im7manu",
   "licencia": "MIT",

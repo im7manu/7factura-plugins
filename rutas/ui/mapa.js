@@ -4,20 +4,38 @@
 //   - Google: Google Maps JavaScript API con la clave de navegador (las rutas de Google deben verse sobre un mapa de Google).
 (function () {
   if (window.RutasMapa) return;
-  let cargaGoogle = null;
+  let cargaGoogle = null, fallo = '';
+  // Error de autenticación de Google (clave no válida, API no activada, dominio no autorizado…): lo llama Google.
+  window.gm_authFailure = () => {
+    fallo = 'Google ha rechazado la clave de navegador. Revisa en Google Cloud que la clave es correcta, que tiene activada «Maps JavaScript API» y la facturación, y que este dominio está permitido.';
+    document.querySelectorAll('[data-rutas-google]').forEach((el) => aviso(el, fallo));
+  };
   function cargarGoogle(clave) {
     if (window.google?.maps?.Map) return Promise.resolve();
     if (cargaGoogle) return cargaGoogle;
     cargaGoogle = new Promise((ok, mal) => {
       const cb = `__rutasGoogle${Date.now()}`;
-      window[cb] = () => { delete window[cb]; ok(); };
+      let bloqueado = false;
+      const csp = (ev) => { if (String(ev.blockedURI).includes('maps.googleapis.com')) bloqueado = true; };
+      document.addEventListener('securitypolicyviolation', csp);
+      const fin = (error) => { clearTimeout(t); document.removeEventListener('securitypolicyviolation', csp); delete window[cb]; if (error) { cargaGoogle = null; s.remove(); mal(new Error(error)); } else ok(); };
+      const sinCargar = () => (bloqueado
+        ? 'El navegador ha bloqueado Google Maps porque esta página se abrió antes de activar el mapa de Google. Recarga la página (Cmd+R o F5).'
+        : 'No se pudo cargar Google Maps. Comprueba la conexión y la clave de navegador.');
+      const t = setTimeout(() => fin(sinCargar()), 15000);
+      window[cb] = () => fin();
       const s = document.createElement('script');
       s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(clave)}&v=weekly&language=es&region=ES&loading=async&callback=${cb}`;
       s.async = true;
-      s.onerror = () => { cargaGoogle = null; mal(new Error('No se pudo cargar Google Maps (revisa la clave de navegador).')); };
+      s.onerror = () => setTimeout(() => fin(sinCargar()), 0);
       document.head.appendChild(s);
     });
     return cargaGoogle;
+  }
+  function aviso(el, texto) {
+    let a = el.parentElement?.querySelector(':scope > .rutas-aviso-mapa');
+    if (!a) { a = document.createElement('div'); a.className = 'rutas-aviso-mapa'; a.setAttribute('role', 'alert'); a.style.cssText = 'margin:0 0 8px;padding:8px 12px;border-radius:8px;background:#fef3c7;color:#78350f;font-size:13px;line-height:1.4'; el.before(a); }
+    a.textContent = texto;
   }
 
   const COLOR = '#2563eb';
@@ -94,8 +112,17 @@
           el.innerHTML = '<div class="rutas-sin-mapa">Para ver el mapa de Google, el administrador debe añadir una <strong>clave de navegador</strong> en Mapas y rutas.</div>';
           return { puntos() {}, linea() {}, alClic() {}, ajustar() {}, destruir() { el.innerHTML = ''; } };
         }
-        await cargarGoogle(cfg.clave_navegador);
-        return googleMapa(el);
+        try {
+          await cargarGoogle(cfg.clave_navegador);
+          if (fallo) throw new Error(fallo);
+          el.dataset.rutasGoogle = '1';
+          return googleMapa(el);
+        } catch (x) {
+          // Sin mapa de Google: se avisa del motivo y se muestra el de OpenStreetMap para poder seguir trabajando.
+          aviso(el, `${x.message} Mientras tanto se muestra el mapa de OpenStreetMap.`);
+          el.innerHTML = '';
+          return leaflet(el);
+        }
       }
       return leaflet(el);
     },
